@@ -1,2 +1,2 @@
 # My Website
-[packetsss.github.io](packetsss.github.io)
+[Click Me!](https://packetsss.github.io/)
