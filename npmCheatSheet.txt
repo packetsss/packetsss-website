@@ -1,0 +1,8 @@
+// start react server
+npm start
+
+// deploy
+npm run deploy
+
+// create a new app
+create-react-app [app-name]

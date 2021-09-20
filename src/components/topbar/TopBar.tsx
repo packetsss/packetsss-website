@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./topbar.css"
+import myAvatar from "../../Assets/avatar.jpeg";
 
 export default function TopBar() {
     const user: boolean = true;
@@ -43,7 +44,7 @@ export default function TopBar() {
                 </ul>
             </div>
             <div className="topRight">
-                {user ? (<img className="topImg" src={process.env.PUBLIC_URL + '/avatar.jpeg'} alt=""></img>) : (
+                {user ? (<img className="topImg" src={myAvatar} alt=""></img>) : (
                     <ul className="topList">
                         <li className="topListItem"><Link className="link" to="/login">LOGIN</Link></li>
 

@@ -1,4 +1,5 @@
 import "./header.css"
+import bannerImg from "../../Assets/banner.png"
 
 export default function Header() {
     return (
@@ -7,7 +8,7 @@ export default function Header() {
                 <span className="headerTitleSmall">A Journey of</span>
                 <span className="headerTitleLarge">Programming</span>
             </div>
-            <img className="headerImg" src={process.env.PUBLIC_URL + '/banner.png'} alt=""></img>
+            <img className="headerImg" src={bannerImg} alt=""></img>
         </div>
     )
 }

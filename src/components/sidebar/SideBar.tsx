@@ -1,13 +1,14 @@
 import "./sidebar.css"
+import myImg from "../../Assets/my_pic.png"
 
 export default function SideBar() {
     return (
         <div className="sidebar">
             <div className="sidebarItem">
                 <span className="sidebarTitle">ABOUT ME</span>
-                <img src={process.env.PUBLIC_URL + "./my_pic.png"} alt=""></img>
+                <img src={myImg} alt=""></img>
                 <p>
-                    I am a second year Mechanical Engineer at UC San Diego. I love Machine Learning and I'm always looking forward to learn new stuff.
+                    I'm Paul Pan, a second year Mechanical Engineer at UC San Diego. I love Machine Learning and I'm always looking forward to learn new stuff.
                     <li>😄 Pronouns: He/Him/is</li>
                     <li>⚡ Fun fact: I like to eat more bananas (non-fun-fact).</li>
                     <li>🔭 I’m currently working on automating mannequins.</li>

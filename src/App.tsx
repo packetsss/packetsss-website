@@ -1,10 +1,10 @@
-import TopBar from "./topbar/TopBar";
-import Home from "./pages/home/Home";
-import Single from "./pages/single/Single";
-import Write from "./pages/write/Write";
-import Setting from "./pages/setting/Setting";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
+import TopBar from "./components/topbar/TopBar";
+import Home from "./components/pages/home/Home";
+import Single from "./components/pages/single/Single";
+import Write from "./components/pages/write/Write";
+import Setting from "./components/pages/setting/Setting";
+import Login from "./components/pages/login/Login";
+import Register from "./components/pages/register/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {

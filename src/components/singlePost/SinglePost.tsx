@@ -1,10 +1,11 @@
 import "./singlepost.css"
+import angelImg from "../../Assets/landscape_2.png"
 
 export default function SinglePost() {
     return (
         <div className="singlepost">
             <div className="singlePostWrapper">
-                <img className="singlePostImg" src={process.env.PUBLIC_URL + "/landscape_2.png"} alt="" />
+                <img className="singlePostImg" src={angelImg} alt="" />
                 <h1 className="singlePostTitle">
                     The Post of Evil
                     <div className="singlePostEdit">
