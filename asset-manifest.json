@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/packetsss-web/static/css/main.4bd256a6.chunk.css",
+    "main.js": "/packetsss-web/static/js/main.0b8494cf.chunk.js",
+    "main.js.map": "/packetsss-web/static/js/main.0b8494cf.chunk.js.map",
+    "runtime-main.js": "/packetsss-web/static/js/runtime-main.ae9411d9.js",
+    "runtime-main.js.map": "/packetsss-web/static/js/runtime-main.ae9411d9.js.map",
+    "static/js/2.d0c0b74d.chunk.js": "/packetsss-web/static/js/2.d0c0b74d.chunk.js",
+    "static/js/2.d0c0b74d.chunk.js.map": "/packetsss-web/static/js/2.d0c0b74d.chunk.js.map",
+    "index.html": "/packetsss-web/index.html",
+    "static/css/main.4bd256a6.chunk.css.map": "/packetsss-web/static/css/main.4bd256a6.chunk.css.map",
+    "static/js/2.d0c0b74d.chunk.js.LICENSE.txt": "/packetsss-web/static/js/2.d0c0b74d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ae9411d9.js",
+    "static/js/2.d0c0b74d.chunk.js",
+    "static/css/main.4bd256a6.chunk.css",
+    "static/js/main.0b8494cf.chunk.js"
+  ]
+}
