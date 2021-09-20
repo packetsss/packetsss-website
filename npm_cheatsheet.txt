@@ -1,0 +1,5 @@
+# start react server
+npm start
+
+# deploy
+npm run deploy
