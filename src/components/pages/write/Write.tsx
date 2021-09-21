@@ -1,3 +1,4 @@
+import { Particle } from "../../../Particle"
 import "./write.css"
 
 export default function Write() {
@@ -8,6 +9,7 @@ export default function Write() {
                 src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                 alt=""
             />
+            <Particle />
             <form className="writeForm">
                 <div className="writeFormGroup">
                     <label htmlFor="fileInput">
@@ -31,6 +33,7 @@ export default function Write() {
                 <button className="writeSubmit" type="submit">
                     Publish
                 </button>
+
             </form>
         </div>
     )
