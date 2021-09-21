@@ -1,6 +1,7 @@
 import "./header.css"
 import bannerImg from "../../Assets/banner.png"
 
+
 export default function Header() {
     return (
         <div className="header">
