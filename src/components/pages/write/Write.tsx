@@ -1,4 +1,4 @@
-import { Particle } from "../../../Particle"
+import { Particle } from "../../../Utils"
 import "./write.css"
 
 export default function Write() {

@@ -186,20 +186,21 @@
 .fork-btn {
     font-size: 1.1em !important;
     padding-top: 10px !important;
+    border-color: null;
 }
 
 .fork-btn-inner {
     line-height: 1.4em !important;
-    background-color: #f5c62b !important;
+    background-color: #a3872b !important;
     padding: 0.25rem 1.1rem !important;
     vertical-align: middle !important;
     text-align: center !important;
-    border-color: #000000 !important;
+    border-color: #ffffff00;
 }
 
 .fork-btn-inner:hover {
     transform: translateY(-3px) !important;
-    background-color: #fae259 !important;
+    background-color: #ffe864 !important;
     border-color: #ffffff00 !important;
 }
 

@@ -3,6 +3,7 @@ import GitHubCalendar from "react-github-calendar";
 import { Row, Col } from "react-bootstrap";
 import { ImPointRight } from "react-icons/im";
 import { SiPytorch, SiTensorflow} from "react-icons/si";
+import myImg from "../../Assets/my_pic.png"
 import {
     DiJavascript1,
     DiReact,
@@ -22,10 +23,10 @@ export function AboutCard() {
                 <blockquote className="blockquote mb-0">
                     <p style={{ textAlign: "justify" }}>
                         Hi there, I'm <span className="purple">Paul Pan, </span>
-                        a second year Mechanical Engineer at UC San Diego. I love Machine Learning and I'm always looking forward to learn new stuff.
+                        a sophomore at UC San Diego. I love Machine Learning and I'm always looking forward to learn new stuff.
                         <br />
                         <br />
-                        Apart from coding, these are some other activities that I love to do!
+                        Apart from coding, these are some other activities that I enjoy doing!
                     </p>
                     <ul>
                         <li className="about-activity">

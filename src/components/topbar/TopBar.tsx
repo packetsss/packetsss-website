@@ -63,7 +63,7 @@ export default function TopBar() {
                         <i className="topIcon fab fa-instagram-square"></i>
                     </a>
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="ml-auto" defaultActiveKey="#home">
+                        <Nav defaultActiveKey="#home">
 
 
                             <Nav.Item>
@@ -85,7 +85,7 @@ export default function TopBar() {
                             <Nav.Item>
                                 <Nav.Link
                                     as={Link}
-                                    to="/project"
+                                    to="/projects"
                                     onClick={() => updateExpanded(false)}
                                 >
                                     <AiOutlineFundProjectionScreen

@@ -1,8 +1,8 @@
 import "./about.css"
 import { Github, Toolstack, AboutCard, Techstack} from "./AboutTools"
 import { Container, Row, Col } from "react-bootstrap";
-import laptopImg from "../../../Assets/about.png";
-import { Particle } from "../../../Particle";
+import myImg from "../../../Assets/my_pic_2.gif"
+import { Particle } from "../../../Utils";
 
 function About() {
     return (
@@ -18,7 +18,7 @@ function About() {
                         }}
                     >
                         <h1 style={{ fontSize: "2.1em", paddingBottom: "20px" }}>
-                            Knowing Who <strong className="purple">I'M</strong>
+                            Knowing Who <strong className="purple">I AM</strong>
                         </h1>
                         <AboutCard />
                     </Col>
@@ -27,7 +27,7 @@ function About() {
                         style={{ paddingTop: "120px", paddingBottom: "50px" }}
                         className="about-img"
                     >
-                        <img src={laptopImg} alt="about" className="img-fluid" />
+                        <img src={myImg} alt="about" width="300" className="tech-icons" />
                     </Col>
                 </Row>
                 <h1 className="project-heading">
