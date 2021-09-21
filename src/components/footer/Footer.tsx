@@ -1,4 +1,4 @@
-import "./bottombar.css"
+import "./footer.css"
 import { Container, Row, Col } from "react-bootstrap";
 import {
     AiFillGithub,
@@ -15,7 +15,7 @@ export default function BottomBar() {
         <Container fluid className="footer">
             <Row>
                 <Col md="4" className="footer-copyright">
-                    <h3>Designed and Developed by Paul Pan</h3>
+                    <h3>Designed and Developed by Paul Pan</h3> 
                 </Col>
                 <Col md="4" className="footer-copyright">
                     <h3>Copyright © {year} Packetsss</h3>

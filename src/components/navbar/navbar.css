@@ -9,6 +9,7 @@
     z-index: 999;
     font-family: 'Josefin Sans', sans-serif;
 }
+
 /* 
 .topLeft, .topRight {
     flex: 3;
@@ -27,6 +28,7 @@
     color: #444;
     cursor: pointer;
 }
+
 /* 
 .topImg {
     width: 40px;
@@ -84,7 +86,6 @@
     background-color: transparent !important;
     border-color: transparent !important;
 }
-
 
 .navbar-toggler:focus, .navbar-toggler:active {
     outline: 0 !important;
@@ -206,4 +207,23 @@
 
 .fork-btn-inner::after {
     display: none !important;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(219, 179, 91);
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(235, 211, 130, 0.911);
+    border-radius: 12px;
 }

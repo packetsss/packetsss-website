@@ -1,5 +1,4 @@
 import "./setting.css"
-import Sidebar from "../../sidebar/SideBar"
 
 export default function Setting() {
     return (
@@ -37,7 +36,6 @@ export default function Setting() {
             </button>
           </form>
         </div>
-        <Sidebar />
       </div>
     )
 }

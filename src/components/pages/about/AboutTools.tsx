@@ -22,11 +22,10 @@ export function AboutCard() {
             <Card.Body>
                 <blockquote className="blockquote mb-0">
                     <p style={{ textAlign: "justify" }}>
-                        Hi there, I'm <span className="purple">Paul Pan, </span>
-                        a sophomore at UC San Diego. I love Machine Learning and I'm always looking forward to learn new stuff.
+                        A sophomore at UC San Diego who love Machine Learning and always looking forward to learn new stuff.
                         <br />
                         <br />
-                        Apart from coding, these are some other activities that I enjoy doing!
+                        Apart from coding, these are some other activities who enjoys doing!
                     </p>
                     <ul>
                         <li className="about-activity">

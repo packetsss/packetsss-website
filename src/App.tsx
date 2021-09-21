@@ -1,4 +1,4 @@
-import TopBar from "./components/topbar/TopBar";
+import TopBar from "./components/navbar/NavBar";
 import Home from "./components/pages/home/Home";
 import Single from "./components/pages/single/Single";
 import Write from "./components/pages/write/Write";
@@ -7,7 +7,7 @@ import Setting from "./components/pages/setting/Setting";
 import Login from "./components/pages/login/Login";
 import About from "./components/pages/about/About";
 import Register from "./components/pages/register/Register";
-import BottomBar from "./components/bottombar/BottomBar";
+import BottomBar from "./components/footer/Footer";
 import ScrollToTop from "./Utils"
 
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
