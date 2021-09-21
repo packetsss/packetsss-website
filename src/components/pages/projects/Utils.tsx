@@ -24,9 +24,9 @@ export function ProjectCard(props: Props) {
                     {props.description}
                 </Card.Text>
                 
-                <Button variant="primary" href={props.link ? props.link : props.clickAble.link} target="_blank">
+                <Button variant="primary" href={props.link ? props.link : (props.clickAble ? props.clickAble.link : "")} target="_blank">
                     <BiLinkExternal /> &nbsp;
-                    {props.link ? (props.isBlog ? "View Blog" : "View Project") : props.clickAble.text}
+                    {props.link ? (props.isBlog ? "View Blog" : "View Project") : (props.clickAble ? props.clickAble.text : "")}
                 </Button>
             </Card.Body>
         </Card>
