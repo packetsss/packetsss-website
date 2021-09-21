@@ -7,6 +7,7 @@ import poolKick from "../../../Assets/pool_kick.gif";
 import poolSolver from "../../../Assets/pool_solver.gif";
 import chatBot from "../../../Assets/chatbot.jpg";
 import imgEditor from "../../../Assets/image_editor.gif";
+import sudoku from "../../../Assets/sudoku.gif";
 
 export default function Projects() {
     return (
@@ -52,8 +53,17 @@ export default function Projects() {
                             imgPath={imgEditor}
                             isBlog={false}
                             title="Image Editor"
-                            description="A Image Editor that provides editing features such as crop, rotate, change brightness, auto sharpen, auto bypass censorship, face detection, and etc."
+                            description="A Image Editor that provides useful editing features such as crop, rotate, change brightness, auto sharpen, auto bypass censorship, face detection, and etc."
                             link="https://github.com/packetsss/Image-Editor"
+                        />
+                    </Col>
+                    <Col md={4} className="project-card">
+                        <ProjectCard
+                            imgPath={sudoku}
+                            isBlog={false}
+                            title="Sudoku Solver"
+                            description="A Sudoku Solver using back tracking and additional optimizations that solves any Sudoku puzzles in 2 seconds. A GUI is also implemented as a ease of use."
+                            link="https://github.com/packetsss/Sudoku-Solver"
                         />
                     </Col>
                 </Row>
