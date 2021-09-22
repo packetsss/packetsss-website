@@ -23,8 +23,9 @@ export function ProjectCard(props: Props) {
                 <Card.Text style={{ textAlign: "justify" }}>
                     {props.description}
                 </Card.Text>
-                
-                <Button variant="primary" href={props.link ? props.link : (props.clickAble ? props.clickAble.link : "")} target="_blank">
+                <br></br>
+
+                <Button variant="primary" href={props.link ? props.link : (props.clickAble ? props.clickAble.link : "")} target="_blank" style={{position: "absolute", bottom: 12}}>  
                     <BiLinkExternal /> &nbsp;
                     {props.link ? (props.isBlog ? "View Blog" : "View Project") : (props.clickAble ? props.clickAble.text : "")}
                 </Button>
