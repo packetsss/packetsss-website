@@ -5,11 +5,11 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { store } from "react-notifications-component";
 
 import "./single.css";
-import { Particle, getDate, timeDelay } from "../../../Utils";
+import { Particle, getDate, timeDelay, backendHostAddr } from "../../../Utils";
 import angelImg from "../../../Assets/landscape_2.png";
 
 async function updatePost(postID: number, body: any, token: string) {
-    const resp = await fetch(`http://127.0.0.1:8000/api/posts/${postID}/`, {
+    const resp = await fetch(`${backendHostAddr}/api/posts/${postID}/`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -34,7 +34,7 @@ async function updatePost(postID: number, body: any, token: string) {
 }
 
 function deletePost(postID: number, token: string) {
-    return fetch(`http://127.0.0.1:8000/api/posts/${postID}/`, {
+    return fetch(`${backendHostAddr}/api/posts/${postID}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -107,6 +107,8 @@ function confirmDelete(props: any, token: string) {
 export default function Single(props: any) {
     // cookies reading
     const cookies = `Token ${document.cookie.split("=")[1]}`;
+    const address: string =
+        `${backendHostAddr}/api/posts/` + props.match.params.id;
 
     useEffect(() => {
         if (!document.cookie) {
@@ -116,7 +118,7 @@ export default function Single(props: any) {
 
     // order of useEffect is important
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/users/", {
+        fetch(`${backendHostAddr}/api/users/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -130,17 +132,6 @@ export default function Single(props: any) {
             .catch((error) => console.log(error));
     }, [cookies]);
 
-    // content editing
-    const [isEditing, setIsEditing] = useState<any>(false);
-    const [titleChange, setTitleChange] = useState<any>();
-    const [contentChange, setContentChange] = useState<any>();
-    const [user, setUser] = useState<any>();
-
-    // content reading
-    const [contents, setContents] = useState<any>();
-    const address: string =
-        "http://127.0.0.1:8000/api/posts/" + props.match.params.id;
-
     useEffect(() => {
         fetch(address, {
             method: "GET",
@@ -150,11 +141,23 @@ export default function Single(props: any) {
             },
         })
             .then((resp) => resp.json())
-            .then((resp) => setContents(resp))
+            .then((resp) => {
+                return setContents(resp);
+            })
             .catch((error) => console.log(error));
     }, [address, cookies]); // memorize address to avoid warning
 
-    return contents ? (
+    // content editing
+    const [isEditing, setIsEditing] = useState<any>(false);
+    const [titleChange, setTitleChange] = useState<any>();
+    const [contentChange, setContentChange] = useState<any>();
+
+    const [user, setUser] = useState<any>();
+
+    // content reading
+    const [contents, setContents] = useState<any>();
+
+    return (contents && user) ? (
         <Container fluid className="single" key={contents.id}>
             <Particle />
             <Container className="singlePostWrapper">
@@ -167,7 +170,7 @@ export default function Single(props: any) {
                         {onEditing(isEditing, setTitleChange, contents.title)}
                     </Col>
                     {/* check ownership */}
-                    {user.id === contents.owner_id ? (
+                    {user && (user.id === contents.owner_id) ? (
                         <Col className="singlePostEdit">
                             {!isEditing ? (
                                 <i
@@ -180,6 +183,7 @@ export default function Single(props: any) {
                                     onClick={() => {
                                         setIsEditing(!isEditing);
                                         contents.owner_name = user.username;
+
                                         [contents.title, contents.description] =
                                             onBtnClick(
                                                 props.match.params.id,
@@ -221,6 +225,6 @@ export default function Single(props: any) {
             </Container>
         </Container>
     ) : (
-        <div></div>
+        <Container></Container>
     );
 }

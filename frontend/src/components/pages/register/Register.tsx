@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { store } from "react-notifications-component";
 
 import "./register.css";
-import { Particle, timeDelay, disableRefresh } from "../../../Utils";
+import { Particle, timeDelay, disableRefresh, backendHostAddr } from "../../../Utils";
 
 export default function Register() {
     const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ export default function Register() {
 
     async function tryRegister(body: object) {
         try {
-            const resp = await fetch("http://127.0.0.1:8000/api/users/", {
+            const resp = await fetch(`${backendHostAddr}/api/users/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

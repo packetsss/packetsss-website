@@ -1,6 +1,6 @@
 import "./posts.css";
 import landscapeImg from "../../../Assets/landscape_1.png";
-import { Particle, eraseCookies, getDate } from "../../../Utils";
+import { Particle, eraseCookies, getDate, backendHostAddr } from "../../../Utils";
 
 import { useState, useEffect } from "react";
 import { Col, Container } from "react-bootstrap";
@@ -52,7 +52,7 @@ export default function Posts() {
             window.location.replace("/login");
         }
 
-        fetch("http://127.0.0.1:8000/api/posts", {
+        fetch(`${backendHostAddr}/api/posts/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

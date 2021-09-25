@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
+from django.http import HttpResponse
+
+
+def empty_view(request):
+    return HttpResponse("Empty View")
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("", empty_view, name="empty_view"),
     path("", include("api.urls")),
-    path("auth/", obtain_auth_token), # allow use post to get token
+    path("admin/", admin.site.urls),
+    path("auth/", obtain_auth_token),  # allow use post to get token
 ]

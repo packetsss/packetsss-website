@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Particle, timeDelay, disableRefresh } from "../../../Utils";
+import { Particle, timeDelay, disableRefresh, backendHostAddr } from "../../../Utils";
 import { useCookies } from "react-cookie";
 import { store } from "react-notifications-component";
 
@@ -14,7 +14,7 @@ export default function Login() {
 
     async function tryLogin(body: object) {
         try {
-            const resp = await fetch("http://127.0.0.1:8000/auth/", {
+            const resp = await fetch(`${backendHostAddr}/auth/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

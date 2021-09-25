@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 
 import "./navbar.css";
+import { backendHostAddr } from "../../Utils";
 
 function loginDetect(user: any) {
     if (!document.cookie) {
@@ -44,7 +45,7 @@ export default function TopBar() {
 
     useEffect(() => {
         document.cookie ? (
-            fetch("http://127.0.0.1:8000/api/users/", {
+            fetch(`${backendHostAddr}/api/users/`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

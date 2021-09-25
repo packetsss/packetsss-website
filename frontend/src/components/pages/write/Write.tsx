@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { store } from "react-notifications-component";
-import { Particle, disableRefresh, timeDelay } from "../../../Utils";
+import { Particle, disableRefresh, timeDelay, backendHostAddr } from "../../../Utils";
 import "./write.css";
 
 export default function Write() {
@@ -20,7 +20,7 @@ export default function Write() {
             }, timeDelay);
         }
         
-        fetch("http://127.0.0.1:8000/api/users/", {
+        fetch(`${backendHostAddr}/api/users/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export default function Write() {
     }, [publishSuccess, cookies]);
 
     function createPost(postBody: any, token: string) {
-        const resp = fetch("http://127.0.0.1:8000/api/posts/", {
+        const resp = fetch(`${backendHostAddr}/api/posts/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
