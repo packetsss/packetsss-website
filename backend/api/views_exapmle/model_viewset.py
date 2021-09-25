@@ -6,7 +6,7 @@ Since ModelViewSet extends GenericAPIView, you'll normally need to provide at le
 Place below into urls.py
 
 router = DefaultRouter()
-router.register("articles", ArticleViewSet, basename="articles")
+router.register("posts", PostViewSet, basename="posts")
 urlpatterns = [
     path("", include(router.urls))
 ]
@@ -14,10 +14,10 @@ urlpatterns = [
 
 from rest_framework import viewsets
 
-from ..models import Article
-from ..serializers import ArticleSerializer
+from ..models import Post
+from ..serializers import PostSerializer
 
 
-class ArticleViewSet(viewsets.ModelViewSet):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

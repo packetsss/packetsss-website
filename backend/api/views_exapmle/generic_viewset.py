@@ -12,7 +12,7 @@ The mixin classes can be imported from rest_framework.mixins.
 Place below into urls.py
 
 router = DefaultRouter()
-router.register("articles", ArticleViewSet, basename="articles")
+router.register("posts", PostViewSet, basename="posts")
 urlpatterns = [
     path("", include(router.urls))
 ]
@@ -21,11 +21,11 @@ urlpatterns = [
 from rest_framework import mixins, viewsets
 
 
-from ..models import Article
-from ..serializers import ArticleSerializer
+from ..models import Post
+from ..serializers import PostSerializer
 
 
-class ArticleViewSet(
+class PostViewSet(
     viewsets.GenericViewSet,
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
@@ -33,5 +33,5 @@ class ArticleViewSet(
     mixins.UpdateModelMixin,
     mixins.DestroyModelMixin,
 ):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

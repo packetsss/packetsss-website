@@ -6,13 +6,13 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.views import Token
 
-from .models import Article
+from .models import Post
 
 # ModelSerializer auto serializes (better than Serializer)
-class ArticleSerializer(serializers.ModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Article
-        fields = ["id", "title", "description"]
+        model = Post
+        fields = ["id", "title", "description", "date", "owner_id"]
 
 
 class UserSerializer(serializers.ModelSerializer):

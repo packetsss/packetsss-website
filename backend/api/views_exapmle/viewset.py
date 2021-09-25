@@ -6,7 +6,7 @@ REST framework adds support for automatic URL routing to Django, and provides yo
 Place below into urls.py
 
 router = DefaultRouter()
-router.register("articles", ArticleViewSet, basename="articles")
+router.register("posts", PostViewSet, basename="posts")
 urlpatterns = [
     path("", include(router.urls))
 ]
@@ -16,39 +16,39 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-from ..models import Article
-from ..serializers import ArticleSerializer
+from ..models import Post
+from ..serializers import PostSerializer
 
 
 # use router/viewset (only need 1 class)
-class ArticleViewSet(viewsets.ViewSet):
+class PostViewSet(viewsets.ViewSet):
     def list(self, request):
-        articles = Article.objects.all()
-        serializer = ArticleSerializer(articles, many=True)
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 
     def create(self, request):
-        serializer = ArticleSerializer(data=request.data)
+        serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
-        queryset = Article.objects.all()
-        article = get_object_or_404(queryset, pk=pk)
-        serializer = ArticleSerializer(article)
+        queryset = Post.objects.all()
+        post = get_object_or_404(queryset, pk=pk)
+        serializer = PostSerializer(post)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        article = Article.objects.get(pk=pk)
-        serializer = ArticleSerializer(article, data=request.data)
+        post = Post.objects.get(pk=pk)
+        serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
-        article = Article.objects.get(pk=pk)
-        article.delete()
+        post = Post.objects.get(pk=pk)
+        post.delete()
         return Response(status.HTTP_204_NO_CONTENT)

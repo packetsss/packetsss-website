@@ -1,0 +1,39 @@
+.home {
+    height: 100vh;
+    position: relative;
+    z-index: -1;
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding-bottom: 30px !important;
+    padding-top: 30px !important;
+}
+
+.homeTitles {
+    /* display: flex;
+    flex-direction: column; */
+
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 50px;
+    color: black;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-weight: 400;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
+    letter-spacing: 10px;
+
+    align-items: center;
+    /* font-family: "Lora", serif; */
+}
+
+.homeTitleLarge {
+    font-size: 75px;
+}
+
+.homeTitleSmall {
+    font-size: 40px;
+}

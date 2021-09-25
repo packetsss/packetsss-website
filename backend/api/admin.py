@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Article
+from .models import Post
 
 # Register your models here.
-# admin.site.register(Article)
+# admin.site.register(Post)
 
 # custom registration
-@admin.register(Article)
-class ArticleModel(admin.ModelAdmin):
+@admin.register(Post)
+class PostModel(admin.ModelAdmin):
     # list out filters on right panel
-    list_filter = ("title", "description")
+    list_filter = ("title", "description", "date", "owner_id")
 
     # show display as well
-    list_display = ("title", "description")
+    list_display = ("title", "description", "date", "owner_id")

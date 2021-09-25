@@ -4,10 +4,14 @@ A model is the single, definitive source of information about your data. It cont
 
 from django.db import models
 
+
 # Create your models here.
-class Article(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-
+    date = models.DateField(auto_now_add=True,)
+    owner_id = models.PositiveIntegerField() # id of owner (user)
+    owner_name = models.CharField(max_length=50)
+    
     def __str__(self):
         return self.title

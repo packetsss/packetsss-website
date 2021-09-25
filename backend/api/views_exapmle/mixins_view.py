@@ -6,22 +6,22 @@ Let's take a look at how we can compose the views by using the mixin classes. He
 Place below into urls.py
 
 urlpatterns = [
-    path("articles/", ArticleList.as_view()),
-    path("articles/<int:pk>/", ArticleDetails.as_view()),
+    path("posts/", PostList.as_view()),
+    path("posts/<int:pk>/", PostDetails.as_view()),
 ]
 """
 
 from rest_framework import generics, mixins
 
-from ..models import Article
-from ..serializers import ArticleSerializer
+from ..models import Post
+from ..serializers import PostSerializer
 
 
-class ArticleList(
+class PostList(
     generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin
 ):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
     def get(self, request):
         return self.list(request)
@@ -30,14 +30,14 @@ class ArticleList(
         return self.create(request)
 
 
-class ArticleDetails(
+class PostDetails(
     generics.GenericAPIView,
     mixins.RetrieveModelMixin,
     mixins.UpdateModelMixin,
     mixins.DestroyModelMixin,
 ):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
