@@ -1,6 +1,11 @@
 import "./posts.css";
 import landscapeImg from "../../../Assets/landscape_1.png";
-import { Particle, eraseCookies, getDate, backendHostAddr } from "../../../Utils";
+import {
+    Particle,
+    eraseCookies,
+    getDate,
+    backendHostAddr,
+} from "../../../Utils";
 
 import { useState, useEffect } from "react";
 import { Col, Container } from "react-bootstrap";
@@ -64,10 +69,12 @@ export default function Posts() {
             .catch((error: any) => console.log(error));
     }, [cookies]);
 
-    return (
+    return posts ? (
         <Container className="posts">
             <Particle />
             {getPosts(posts)}
         </Container>
+    ) : (
+        <Container></Container>
     );
 }

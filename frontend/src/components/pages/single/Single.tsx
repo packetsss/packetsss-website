@@ -157,6 +157,7 @@ export default function Single(props: any) {
     // content reading
     const [contents, setContents] = useState<any>();
 
+    // check both contents and user is loaded
     return (contents && user) ? (
         <Container fluid className="single" key={contents.id}>
             <Particle />

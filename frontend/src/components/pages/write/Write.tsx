@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
 import { store } from "react-notifications-component";
-import { Particle, disableRefresh, timeDelay, backendHostAddr } from "../../../Utils";
+import {
+    Particle,
+    disableRefresh,
+    timeDelay,
+    backendHostAddr,
+} from "../../../Utils";
 import "./write.css";
 
 export default function Write() {
     const [titleChange, setTitleChange] = useState<any>();
     const [contentChange, setContentChange] = useState<any>();
     const [user, setUser] = useState<any>();
-    const [publishSuccess, setPublishSuccess] = useState(0);
+    const [publishSuccess, setPublishSuccess] = useState(-1);
     const cookies = `Token ${document.cookie.split("=")[1]}`;
 
     useEffect(() => {
         if (!document.cookie) {
             window.location.replace("/login");
         }
-        if (publishSuccess !== 0) {
+        if (publishSuccess !== -1) {
             setTimeout(() => {
                 window.location.replace(`/post/${publishSuccess}`);
             }, timeDelay);
         }
-        
+
         fetch(`${backendHostAddr}/api/users/`, {
             method: "GET",
             headers: {
@@ -58,7 +63,7 @@ export default function Write() {
         return resp;
     }
 
-    return (
+    return user ? (
         <div className="write">
             <Particle />
             <img
@@ -114,5 +119,7 @@ export default function Write() {
                 </button>
             </form>
         </div>
+    ) : (
+        <div></div>
     );
 }
