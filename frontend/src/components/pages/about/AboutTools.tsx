@@ -4,7 +4,7 @@ import GitHubCalendar from "react-github-calendar";
 import { Row, Col } from "react-bootstrap";
 import { ImPointRight } from "react-icons/im";
 import { SiPytorch, SiTensorflow } from "react-icons/si";
-import { DiJavascript1, DiReact, DiPython, DiGit } from "react-icons/di";
+import { DiJavascript1, DiReact, DiPython } from "react-icons/di";
 import { SiLinux, SiVisualstudiocode, SiJupyter } from "react-icons/si";
 
 export function AboutCard() {
@@ -81,9 +81,6 @@ export function Techstack() {
       <Col xs={4} md={2} className="tech-icons">
         <span className="iconify" data-icon="simple-icons:qt"></span>
       </Col>
-      <Col xs={4} md={2} className="tech-icons">
-        <span className="iconify" data-icon="simple-icons:mysql"></span>
-      </Col>
     </Row>
   );
 }
@@ -127,10 +124,19 @@ export function Toolstack() {
         <SiJupyter />
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <DiGit />
+        <span className="iconify" data-icon="simple-icons:git"></span>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <span className="iconify" data-icon="simple-icons:docker"></span>
+        <span className="iconify" data-icon="simple-icons:docker"></span> 
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <span className="iconify" data-icon="simple-icons:mysql"></span>
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <span className="iconify" data-icon="simple-icons:postman"></span>
+      </Col>
+      <Col xs={4} md={2} className="tech-icons">
+        <span className="iconify" data-icon="simple-icons:heroku"></span>
       </Col>
     </Row>
   );
