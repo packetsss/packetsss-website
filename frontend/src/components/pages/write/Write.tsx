@@ -21,7 +21,7 @@ export default function Write() {
         }
         if (publishSuccess !== -1) {
             setTimeout(() => {
-                window.location.replace(`/post/${publishSuccess}`);
+                window.location.replace(`#/post/${publishSuccess}`);
             }, timeDelay);
         }
 

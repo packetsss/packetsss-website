@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { store } from "react-notifications-component";
 
 import "./register.css";
-import { Particle, timeDelay, disableRefresh, backendHostAddr } from "../../../Utils";
+import {
+    Particle,
+    timeDelay,
+    disableRefresh,
+    backendHostAddr,
+} from "../../../Utils";
 
 export default function Register() {
     const [username, setUsername] = useState("");

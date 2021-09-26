@@ -12,7 +12,7 @@ import Footer from "./components/footer/Footer";
 import { ScrollToTop } from "./Utils";
 
 import ReactNotification from "react-notifications-component";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 
 function App() {
     // modify animation time to 0.5s instead of 1s
@@ -20,47 +20,46 @@ function App() {
 
     return (
         // github page only supports hashRouter not browserRouter
-        <BrowserRouter basename={"/#/"}>
-            <div style={{minHeight: "100vh"}}>
-            <ReactNotification />
-            <ScrollToTop />
-            <TopBar />
-            <Switch>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route exact path="/about">
-                    <About />
-                </Route>
-                <Route exact path="/projects">
-                    <Projects />
-                </Route>
-                <Route exact path="/register">
-                    {<Register />}
-                </Route>
-                <Route exact path="/login">
-                    {<Login />}
-                </Route>
-                <Route
-                    exact
-                    path="/post/:id"
-                    render={(props) => <Single {...props} />}
-                />
+        <HashRouter basename={"/"}>
+            <div style={{ minHeight: "100vh" }}>
+                <ReactNotification />
+                <ScrollToTop />
+                <TopBar />
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/about">
+                        <About />
+                    </Route>
+                    <Route exact path="/projects">
+                        <Projects />
+                    </Route>
+                    <Route exact path="/register">
+                        {<Register />}
+                    </Route>
+                    <Route exact path="/login">
+                        {<Login />}
+                    </Route>
+                    <Route
+                        exact
+                        path="/post/:id"
+                        render={(props) => <Single {...props} />}
+                    />
 
-                <Route exact path="/posts">
-                    {<Posts />}
-                </Route>
-                <Route exact path="/write">
-                    {<Write />}
-                </Route>
-                <Route exact path="/settings">
-                    {<Setting />}
-                </Route>
-            </Switch>
-            </div> 
+                    <Route exact path="/posts">
+                        {<Posts />}
+                    </Route>
+                    <Route exact path="/write">
+                        {<Write />}
+                    </Route>
+                    <Route exact path="/settings">
+                        {<Setting />}
+                    </Route>
+                </Switch>
+            </div>
             <Footer />
-            
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

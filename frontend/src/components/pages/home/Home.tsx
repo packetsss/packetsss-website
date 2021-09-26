@@ -28,7 +28,9 @@ export default function Home() {
             <Container>
                 <Particle />
                 <div className="homeTitles">
-                    <span className="homeTitleLarge">Hi there, I am Paul Pan</span>
+                    <span className="homeTitleLarge">
+                        Hi there, I am Paul Pan
+                    </span>
                     <span className="homeTitleSmall">
                         <Type />
                     </span>

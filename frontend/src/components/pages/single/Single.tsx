@@ -158,7 +158,7 @@ export default function Single(props: any) {
     const [contents, setContents] = useState<any>();
 
     // check both contents and user is loaded
-    return (contents && user) ? (
+    return contents && user ? (
         <Container fluid className="single" key={contents.id}>
             <Particle />
             <Container className="singlePostWrapper">
@@ -171,7 +171,7 @@ export default function Single(props: any) {
                         {onEditing(isEditing, setTitleChange, contents.title)}
                     </Col>
                     {/* check ownership */}
-                    {user && (user.id === contents.owner_id) ? (
+                    {user && user.id === contents.owner_id ? (
                         <Col className="singlePostEdit">
                             {!isEditing ? (
                                 <i

@@ -10,7 +10,7 @@ function logout() {
                 "=;expires=" + new Date().toUTCString() + ";path=/"
             );
     });
-    window.location.replace("#/")
+    window.location.replace("#/");
 }
 
 export default function Setting() {
@@ -24,7 +24,9 @@ export default function Setting() {
                     <span className="settingsTitleDelete">Delete Account</span>
                 </div>
                 <form className="settingsForm" onSubmit={disableRefresh}>
-                    <label>ONLY THE LOGOUT BUTTON WORKS FOR NOW //Profile Picture</label>
+                    <label>
+                        ONLY THE LOGOUT BUTTON WORKS FOR NOW //Profile Picture
+                    </label>
                     <div className="settingsPP">
                         <img
                             src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"

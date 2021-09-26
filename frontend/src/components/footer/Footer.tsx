@@ -8,8 +8,6 @@ import {
     AiOutlineTwitter,
 } from "react-icons/ai";
 
-
-
 export default function Footer() {
     let date = new Date();
     let year = date.getFullYear();

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
 
-export const backendHostAddr = "https://packetsss-django-backend.herokuapp.com"
+export const backendHostAddr = "https://packetsss-django-backend.herokuapp.com";
 
 // delete all cookies
 export function eraseCookies() {
