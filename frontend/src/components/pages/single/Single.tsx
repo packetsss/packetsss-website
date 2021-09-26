@@ -93,7 +93,7 @@ function confirmDelete(props: any, token: string) {
                 label: "Yes",
                 onClick: () => {
                     deletePost(props.match.params.id, token);
-                    window.location.replace("/posts");
+                    window.location.replace("#/posts");
                 },
             },
             {
@@ -112,7 +112,7 @@ export default function Single(props: any) {
 
     useEffect(() => {
         if (!document.cookie) {
-            window.location.replace("/login");
+            window.location.replace("#/login");
         }
     }, []);
 

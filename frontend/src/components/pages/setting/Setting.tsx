@@ -10,7 +10,7 @@ function logout() {
                 "=;expires=" + new Date().toUTCString() + ";path=/"
             );
     });
-    window.location.replace("/")
+    window.location.replace("#/")
 }
 
 export default function Setting() {

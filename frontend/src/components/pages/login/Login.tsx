@@ -61,12 +61,12 @@ export default function Login() {
     // redirect to article
     useEffect(() => {
         if (document.cookie && !username) {
-            window.location.replace("/posts");
+            window.location.replace("#/posts");
         }
         if (cookies.myToken) {
             // delay for 3 sec and then redirect
             setTimeout(() => {
-                window.location.replace("/posts");
+                window.location.replace("#/posts");
             }, timeDelay);
         }
     }, [cookies.myToken, username]);
@@ -104,7 +104,7 @@ export default function Login() {
                     </button>
                 </form>
                 <div style={{ marginTop: "5px", fontSize: 14, zIndex: 0 }}>
-                    Don't have an account? <a href="/register/">Sign Up</a>
+                    Don't have an account? <a href="#/register/">Sign Up</a>
                 </div>
             </div>
         </div>

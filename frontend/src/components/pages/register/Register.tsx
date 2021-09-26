@@ -60,11 +60,11 @@ export default function Register() {
 
     useEffect(() => {
         if (document.cookie) {
-            window.location.replace("/posts");
+            window.location.replace("#/posts");
         }
         if (registerSuccess) {
             setTimeout(() => {
-                window.location.replace("/login");
+                window.location.replace("#/login");
             }, timeDelay);
         }
     }, [registerSuccess]);
@@ -113,7 +113,7 @@ export default function Register() {
                     </button>
                 </form>
                 <div style={{ marginTop: "5px", fontSize: 14, zIndex: 0 }}>
-                    Already have an account? <a href="/login/">Login</a>
+                    Already have an account? <a href="#/login/">Login</a>
                 </div>
             </div>
         </div>

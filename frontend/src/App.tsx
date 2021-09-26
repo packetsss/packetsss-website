@@ -12,14 +12,15 @@ import Footer from "./components/footer/Footer";
 import { ScrollToTop } from "./Utils";
 
 import ReactNotification from "react-notifications-component";
-import { BrowserRouter as Router, Switch, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
     // modify animation time to 0.5s instead of 1s
     document.documentElement.style.setProperty("--animate-duration", ".5s");
 
     return (
-        <HashRouter basename={"packetsss.live"}>
+        // github page only supports hashRouter not browserRouter
+        <BrowserRouter basename={"/#/"}>
             <div style={{minHeight: "100vh"}}>
             <ReactNotification />
             <ScrollToTop />
@@ -59,7 +60,7 @@ function App() {
             </div> 
             <Footer />
             
-        </HashRouter>
+        </BrowserRouter>
     );
 }
 

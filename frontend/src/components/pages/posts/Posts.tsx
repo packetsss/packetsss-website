@@ -15,7 +15,7 @@ function Post(props: any) {
     return props.post ? (
         <div className="post">
             <a
-                href={"/post/" + props.post.id}
+                href={"#/post/" + props.post.id}
                 style={{ textDecoration: "none", color: "black" }}
             >
                 <img className="postImg" src={landscapeImg} alt=""></img>
@@ -54,7 +54,7 @@ export default function Posts() {
 
     useEffect(() => {
         if (!document.cookie) {
-            window.location.replace("/login");
+            window.location.replace("#/login");
         }
 
         fetch(`${backendHostAddr}/api/posts/`, {

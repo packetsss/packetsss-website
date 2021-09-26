@@ -15,7 +15,7 @@ import { backendHostAddr } from "../../Utils";
 function loginDetect(user: any) {
     if (!document.cookie) {
         return (
-            <Button href="/login/" className="fork-btn-inner">
+            <Button href="#/login/" className="fork-btn-inner">
                 <Row>
                     <Col>Login Here</Col>
                 </Row>
@@ -31,7 +31,7 @@ function loginDetect(user: any) {
                         fontSize: 25,
                         color: "black",
                     }}
-                    href="/settings/"
+                    href="#/settings/"
                 >
                     {user ? user.username : null}
                 </a>
