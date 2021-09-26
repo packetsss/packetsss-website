@@ -5,5 +5,5 @@
   <a href="https://packetsss.live/" target="_blank">packetsss.live</a>
 </h2>
 
-<div>Please go to main branch for source files</div>
+<h3 align="center">Please go to the main branch for source files...</h3>
 
