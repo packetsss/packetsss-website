@@ -5,8 +5,13 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { store } from "react-notifications-component";
 
 import "./single.css";
-import { Particle, getDate, timeDelay, backendHostAddr } from "../../../Utils";
-import angelImg from "../../../Assets/landscape_2.png";
+import {
+  Particle,
+  getDate,
+  timeDelay,
+  backendHostAddr,
+  disableRefresh,
+} from "../../../Utils";
 
 async function updatePost(postID: number, body: any, token: string) {
   const resp = await fetch(`${backendHostAddr}/api/posts/${postID}/`, {
@@ -47,7 +52,9 @@ function onEditing(isEditing: boolean, func: any, value: string) {
   if (isEditing) {
     return (
       <textarea
+        required
         className="form-control z-depth-1"
+        style={{ whiteSpace: "pre-wrap" }}
         onChange={func}
         defaultValue={value}
         rows={value.length / 50}
@@ -148,7 +155,7 @@ export default function Single(props: any) {
   }, [address, cookies]); // memorize address to avoid warning
 
   // content editing
-  const [isEditing, setIsEditing] = useState<any>(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [titleChange, setTitleChange] = useState<any>();
   const [contentChange, setContentChange] = useState<any>();
 
@@ -159,61 +166,79 @@ export default function Single(props: any) {
 
   // check both contents and user is loaded
   return contents && user ? (
-    <Container fluid className="single" key={contents.id}>
+    <Container fluid className="single">
       <Particle />
       <Container className="singlePostWrapper">
         <Row>
-          <img className="singlePostImg" src={angelImg} alt="Angel" />
+          <img
+            className="singlePostImg"
+            src={`https://picsum.photos/1400/400`}
+            alt="post cover"
+          />
         </Row>
-        <Row className="singlePostTitle">
-          <Col></Col>
-          <Col>{onEditing(isEditing, setTitleChange, contents.title)}</Col>
-          {/* check ownership */}
-          {user && user.id === contents.owner_id ? (
-            <Col className="singlePostEdit">
-              {!isEditing ? (
-                <i
-                  className="singlePostIcon far fa-edit"
-                  onClick={() => setIsEditing(!isEditing)}
-                ></i>
-              ) : (
-                <i
-                  className="singlePostIcon far fa-check-square"
-                  onClick={() => {
-                    setIsEditing(!isEditing);
-                    contents.owner_name = user.username;
+        <form
+          onSubmit={(env) => {
+            disableRefresh(env);
+            setIsEditing(!isEditing);
+            contents.owner_name = user.username;
 
-                    [contents.title, contents.description] = onBtnClick(
-                      props.match.params.id,
-                      titleChange,
-                      contentChange,
-                      contents,
-                      cookies
-                    );
-                  }}
-                ></i>
-              )}
-
-              <i
-                className="singlePostIcon far fa-trash-alt"
-                onClick={() => confirmDelete(props, cookies)}
-              ></i>
-            </Col>
-          ) : (
+            [contents.title, contents.description] = onBtnClick(
+              props.match.params.id,
+              titleChange,
+              contentChange,
+              contents,
+              cookies
+            );
+          }}
+        >
+          <Row className="singlePostTitle">
             <Col></Col>
-          )}
-        </Row>
-        <Col className="singlePostInfo">
-          <Row className="singlePostAuthor">
-            Author:&nbsp;<b>{user.username}</b>
+            <Col className="col-md-8">
+              {onEditing(isEditing, setTitleChange, contents.title)}
+            </Col>
+            {/* check ownership */}
+            {user && user.id === contents.owner_id ? (
+              <Col className="singlePostEdit">
+                {!isEditing ? (
+                  <div>
+                    <i
+                      className="singlePostIcon far fa-edit"
+                      onClick={() => setIsEditing(!isEditing)}
+                    ></i>
+                    <i
+                      className="singlePostIcon far fa-trash-alt"
+                      onClick={() => confirmDelete(props, cookies)}
+                    ></i>
+                  </div>
+                ) : (
+                  <div>
+                    <button
+                      type="submit"
+                      className="singlePostIcon far fa-check-square"
+                    ></button>
+                    <i
+                      className="singlePostIcon far fa-window-close"
+                      onClick={() => setIsEditing(!isEditing)}
+                    ></i>
+                  </div>
+                )}
+              </Col>
+            ) : (
+              <Col></Col>
+            )}
           </Row>
-          <Row className="singlePostDate">{getDate(contents.date)}</Row>
-        </Col>
-        <Col className="singlePostDesc">
-          {/* tab */}
-          &emsp;
-          {onEditing(isEditing, setContentChange, contents.description)}
-        </Col>
+          <Col className="singlePostInfo">
+            <Row className="singlePostAuthor">
+              Author:&nbsp;<b>{user.username}</b>
+            </Row>
+            <Row className="singlePostDate">{getDate(contents.date)}</Row>
+          </Col>
+          <Col className="singlePostDesc">
+            {/* tab */}
+            &emsp;
+            <p style={{whiteSpace: "pre-line"}}>{onEditing(isEditing, setContentChange, contents.description)}</p>
+          </Col>
+        </form>
       </Container>
     </Container>
   ) : (

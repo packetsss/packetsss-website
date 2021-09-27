@@ -7,7 +7,7 @@
 }
 
 .post {
-  align-items: center;
+  text-align: center;
   margin: 25px 25px 25px 25px;
   display: flex;
   flex-direction: column;

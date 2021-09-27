@@ -44,6 +44,10 @@ export function getDate(now: string) {
   return currentDate;
 }
 
+export function randomRange(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
 export function Particle() {
   return (
     <Particles

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { store } from "react-notifications-component";
 import {
   Particle,
@@ -65,15 +66,25 @@ export default function Write() {
   }
 
   return user ? (
-    <div className="write">
+    <Container className="write">
       <Particle />
-      <img
-        className="writeImg"
-        src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        alt=""
-      />
+      <img className="writeImg" src={`https://picsum.photos/1200/400`} alt="" />
 
-      <form className="writeForm" onSubmit={disableRefresh}>
+      <form
+        className="writeForm"
+        onSubmit={(env) => {
+          disableRefresh(env);
+          createPost(
+            {
+              title: titleChange.target.value,
+              description: contentChange.target.value,
+              owner_id: user.id,
+              owner_name: user.username,
+            },
+            cookies
+          );
+        }}
+      >
         <div className="writeFormGroup">
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus"></i>
@@ -100,22 +111,12 @@ export default function Write() {
         <button
           className="writeSubmit"
           type="submit"
-          onClick={() => {
-            return createPost(
-              {
-                title: titleChange.target.value,
-                description: contentChange.target.value,
-                owner_id: user.id,
-                owner_name: user.username,
-              },
-              cookies
-            );
-          }}
+          //   onClick={}
         >
           Publish
         </button>
       </form>
-    </div>
+    </Container>
   ) : (
     <div></div>
   );
