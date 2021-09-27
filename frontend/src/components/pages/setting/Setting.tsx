@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { Container } from "react-bootstrap";
+import { confirmAlert } from "react-confirm-alert";
 import { store } from "react-notifications-component";
-import { Particle, disableRefresh, timeDelay } from "../../../Utils";
+import { Particle, disableRefresh, timeDelay, backendHostAddr } from "../../../Utils";
 import "./setting.css";
 
 function logout() {
@@ -29,6 +31,32 @@ function logout() {
   }, timeDelay);
 }
 
+function confirmDelete(props: any, token: string) {
+    confirmAlert({
+      title: "Confirm to delete",
+      message: "Are you sure to delete this post?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            fetch(`${backendHostAddr}/api/users`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              });
+            window.location.replace("#/posts");
+          },
+        },
+        {
+          label: "No",
+          onClick: () => null,
+        },
+      ],
+    });
+  }
+
 export default function Setting() {
   useEffect(() => {
     if (!document.cookie) {
@@ -37,12 +65,12 @@ export default function Setting() {
     }
   });
   return (
-    <div className="settings">
+    <Container className="settings">
       <Particle />
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsTitleUpdate">Update Your Account</span>
-          <span className="settingsTitleDelete">Delete Account</span>
+          <span className="settingsTitleDelete"><a href="">Delete Account</a></span>
         </div>
         <form className="settingsForm" onSubmit={disableRefresh}>
           <label>ONLY THE LOGOUT BUTTON WORKS FOR NOW //Profile Picture</label>
@@ -81,6 +109,6 @@ export default function Setting() {
           </button>
         </form>
       </div>
-    </div>
+    </Container>
   );
 }

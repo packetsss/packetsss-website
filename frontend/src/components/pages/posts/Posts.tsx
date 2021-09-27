@@ -14,7 +14,7 @@ import { Col, Container } from "react-bootstrap";
 
 // single post
 function Post(props: any) {
-  const randomNumber = randomRange(200, 700);
+  const randomNumber = randomRange(200, 800);
   return props.post ? (
     <div className="post">
       <a
@@ -23,7 +23,7 @@ function Post(props: any) {
       >
         <img
           className="postImg"
-          src={`https://picsum.photos/${randomNumber}?random&t=${props.post.id}`}
+          src={`https://picsum.photos/${randomNumber}`}
           alt=""
         ></img>
         <div className="postInfo">

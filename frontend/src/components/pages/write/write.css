@@ -7,6 +7,7 @@
   height: 300px;
   border-radius: 10px;
   object-fit: cover;
+  caret-color: transparent;
 }
 
 .writeForm {
@@ -29,6 +30,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  caret-color: transparent;
+
 }
 
 .writeInput {
@@ -48,7 +51,7 @@
 }
 
 .writeText {
-  width: 70vw;
+  width: 100vw;
   height: 35vh;
   font-family: inherit;
   font-size: 20px;
@@ -68,7 +71,6 @@
   display: flex;
   align-items: center;
   transition: all 0.4s ease 0s;
-
 }
 
 .writeSubmit:hover {

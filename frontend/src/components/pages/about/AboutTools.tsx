@@ -102,8 +102,8 @@ export function Github() {
       </h1>
       <GitHubCalendar
         username="packetsss"
-        blockSize={18}
-        blockMargin={5}
+        blockSize={20}
+        blockMargin={3}
         theme={colourTheme}
         fontSize={16}
       />
@@ -127,7 +127,7 @@ export function Toolstack() {
         <span className="iconify" data-icon="simple-icons:git"></span>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <span className="iconify" data-icon="simple-icons:docker"></span> 
+        <span className="iconify" data-icon="simple-icons:docker"></span>
       </Col>
       <Col xs={4} md={2} className="tech-icons">
         <span className="iconify" data-icon="simple-icons:mysql"></span>
