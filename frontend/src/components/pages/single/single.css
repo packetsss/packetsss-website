@@ -66,10 +66,10 @@
 }
 
 .singlePostDesc {
-  white-space: "pre-line";
   color: #666;
   font-size: 18px;
   line-height: 25px;
+  white-space: pre-line;
 }
 
 .singlePostDesc::first-letter {
