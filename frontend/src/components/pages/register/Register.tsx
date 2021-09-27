@@ -79,7 +79,13 @@ export default function Register() {
       <Particle />
       <div className="register">
         <span className="registerTitle">Register</span>
-        <form className="registerForm" onSubmit={disableRefresh}>
+        <form
+          className="registerForm"
+          onSubmit={(env) => {
+            disableRefresh(env);
+            tryRegister({ username, email, password });
+          }}
+        >
           <label>*Username</label>
           <input
             required
@@ -107,11 +113,7 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            className="registerButton"
-            type="submit"
-            onClick={() => tryRegister({ username, email, password })}
-          >
+          <button className="registerButton" type="submit">
             Register
           </button>
         </form>

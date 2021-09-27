@@ -81,7 +81,13 @@ export default function Login() {
       <Particle />
       <div className="login">
         <span className="loginTitle">Login</span>
-        <form className="loginForm" onSubmit={disableRefresh}>
+        <form
+          className="loginForm"
+          onSubmit={(env) => {
+            disableRefresh(env);
+            tryLogin({ username, password })
+          }}
+        >
           <label>Username</label>
           <input
             required
@@ -103,7 +109,6 @@ export default function Login() {
           <button
             type="submit"
             className="loginButton"
-            onClick={() => tryLogin({ username, password })}
           >
             Login
           </button>

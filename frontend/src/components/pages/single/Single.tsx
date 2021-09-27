@@ -74,20 +74,24 @@ function onBtnClick(
   token: string
 ) {
   // update title and body
-  contents.title = titleChange ? titleChange.target.value : contents.title;
-  contents.description = contentChange
-    ? contentChange.target.value
-    : contents.description;
+  if (titleChange || contentChange) {
+    contents.title = titleChange ? titleChange.target.value : contents.title;
+    contents.description = contentChange
+      ? contentChange.target.value
+      : contents.description;
 
-  updatePost(
-    postID,
-    {
-      title: contents.title,
-      description: contents.description,
-      owner_id: contents.owner_id,
-    },
-    token
-  );
+    updatePost(
+      postID,
+      {
+        title: contents.title,
+        description: contents.description,
+        owner_id: contents.owner_id,
+      },
+      token
+    );
+  } else {
+    <div></div>;
+  }
   return [contents.title, contents.description];
 }
 
@@ -233,10 +237,12 @@ export default function Single(props: any) {
             </Row>
             <Row className="singlePostDate">{getDate(contents.date)}</Row>
           </Col>
-          <Col className="singlePostDesc">
-            {/* tab */}
-            &emsp;
-            <p style={{whiteSpace: "pre-line"}}>{onEditing(isEditing, setContentChange, contents.description)}</p>
+          <Col>
+            <p className="singlePostDesc">
+              {/* tab */}
+              &emsp;
+              {onEditing(isEditing, setContentChange, contents.description)}
+            </p>
           </Col>
         </form>
       </Container>

@@ -10,9 +10,9 @@ import {
 import "./write.css";
 
 export default function Write() {
+  const [user, setUser] = useState<any>();
   const [titleChange, setTitleChange] = useState<any>();
   const [contentChange, setContentChange] = useState<any>();
-  const [user, setUser] = useState<any>();
   const [publishSuccess, setPublishSuccess] = useState(-1);
   const cookies = `Token ${document.cookie.split("=")[1]}`;
 

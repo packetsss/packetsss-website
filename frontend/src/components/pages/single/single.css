@@ -24,6 +24,7 @@
 }
 
 .singlePostEdit {
+  caret-color: transparent;
   left: 5%;
   font-size: 28px;
   z-index: 0;
@@ -65,6 +66,7 @@
 }
 
 .singlePostDesc {
+  white-space: "pre-line";
   color: #666;
   font-size: 18px;
   line-height: 25px;
