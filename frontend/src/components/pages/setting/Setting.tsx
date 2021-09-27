@@ -1,18 +1,44 @@
-import { disableRefresh } from "../../../Utils";
+import { useEffect } from "react";
+import { store } from "react-notifications-component";
+import { Particle, disableRefresh, timeDelay } from "../../../Utils";
 import "./setting.css";
 
 function logout() {
+  store.addNotification({
+    title: "Logout Success!",
+    message: "You have successfully logged out",
+    type: "success",
+    insert: "top",
+    container: "top-right",
+    animationIn: ["animate__animated", "animate__bounceIn"],
+    animationOut: ["animate__animated", "animate__fadeOut"],
+    dismiss: {
+      duration: timeDelay,
+      onScreen: true,
+    },
+  });
+
   document.cookie.split(";").forEach((c) => {
     document.cookie = c
       .replace(/^ +/, "")
       .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
   });
-  window.location.replace("#/");
+  setTimeout(() => {
+    window.location.replace("#/");
+    window.location.reload();
+  }, timeDelay);
 }
 
 export default function Setting() {
+  useEffect(() => {
+    if (!document.cookie) {
+      window.location.replace("#/login");
+      window.location.reload();
+    }
+  });
   return (
     <div className="settings">
+      <Particle />
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsTitleUpdate">Update Your Account</span>

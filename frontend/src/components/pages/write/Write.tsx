@@ -18,6 +18,7 @@ export default function Write() {
   useEffect(() => {
     if (!document.cookie) {
       window.location.replace("#/login");
+      window.location.reload();
     }
     if (publishSuccess !== -1) {
       setTimeout(() => {

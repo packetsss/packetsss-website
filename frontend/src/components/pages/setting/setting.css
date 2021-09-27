@@ -26,6 +26,7 @@
 }
 
 .settingsForm {
+  z-index: 0;
   display: flex;
   flex-direction: column;
 }
@@ -73,6 +74,7 @@
 }
 
 .settingsForm > input {
+  z-index: 0;
   color: gray;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -82,6 +84,7 @@
 }
 
 .settingsSubmitButton {
+  z-index: 0;
   align-self: center;
   width: 150px;
   border: none;
@@ -102,6 +105,7 @@
 }
 
 .settingsLogoutButton {
+  z-index: 0;
   align-self: center;
   width: 150px;
   border: none;

@@ -55,6 +55,7 @@ export default function Posts() {
   useEffect(() => {
     if (!document.cookie) {
       window.location.replace("#/login");
+      window.location.reload();
     }
 
     fetch(`${backendHostAddr}/api/posts/`, {

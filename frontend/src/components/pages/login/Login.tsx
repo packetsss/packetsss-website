@@ -71,6 +71,7 @@ export default function Login() {
       // delay for 3 sec and then redirect
       setTimeout(() => {
         window.location.replace("#/posts");
+        window.location.reload();
       }, timeDelay);
     }
   }, [cookies.myToken, username]);
