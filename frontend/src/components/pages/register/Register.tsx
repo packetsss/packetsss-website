@@ -4,6 +4,7 @@ import { store } from "react-notifications-component";
 import "./register.css";
 import { Particle, timeDelay, disableRefresh } from "../../../Utils";
 import axiosInstance from "../../../auth/Login";
+import { Link } from "react-router-dom";
 
 export default function Register() {
     const [username, setUsername] = useState("");
@@ -102,7 +103,7 @@ export default function Register() {
                     </button>
                 </form>
                 <div style={{ marginTop: "5px", fontSize: 14, zIndex: 0 }}>
-                    Already have an account? <a href="#/login/">Login</a>
+                    Already have an account? <Link to="/login">Login</Link>
                 </div>
             </div>
         </div>

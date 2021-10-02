@@ -7,6 +7,7 @@ import "animate.css";
 import "./login.css";
 import "react-notifications-component/dist/theme.css";
 import axiosInstance from "../../../auth/Login";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -99,7 +100,7 @@ export default function Login() {
                     </button>
                 </form>
                 <div style={{ marginTop: "5px", fontSize: 14, zIndex: 0 }}>
-                    Don't have an account? <a href="#/register/">Sign Up</a>
+                    Don't have an account? <Link to="/register">Sign Up</Link>
                 </div>
             </div>
         </div>

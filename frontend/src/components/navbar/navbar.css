@@ -180,3 +180,9 @@
     background: rgba(235, 211, 130, 0.911);
     border-radius: 12px;
 }
+
+.settings-icon{
+    text-decoration: none;
+    font-size: 25;
+    color: black;
+}

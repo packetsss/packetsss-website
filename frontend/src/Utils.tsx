@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
 
-export const backendHostAddr = "http://127.0.0.1:8000"; // "https://packetsss-django-backend.herokuapp.com";
+// export const backendHostAddr = "https://packetsss-django-backend.herokuapp.com";
+export const baseURL = "http://127.0.0.1:8000";
 
 // delete all cookies
 export function eraseCookies() {

@@ -4,14 +4,15 @@ import { Particle, eraseCookies, getDate, randomRange } from "../../../Utils";
 import { useState, useEffect } from "react";
 import { Col, Container } from "react-bootstrap";
 import axiosInstance from "../../../auth/Login";
+import { Link } from "react-router-dom";
 
 // single post
 function Post(props: any) {
     const randomNumber = randomRange(200, 800);
     return props.post ? (
         <div className="post">
-            <a
-                href={"#/post/" + props.post.id}
+            <Link
+                to={`/post/${props.post.id}`}
                 style={{ textDecoration: "none", color: "black" }}
             >
                 <img
@@ -24,7 +25,7 @@ function Post(props: any) {
                     <span className="postTitle">{props.post.title}</span>
                     <span className="postDate">{getDate(props.post.date)}</span>
                 </div>
-            </a>
+            </Link>
             <p className="postDesc">{props.post.description}</p>
         </div>
     ) : null;

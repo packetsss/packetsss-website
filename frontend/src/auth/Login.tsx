@@ -1,8 +1,8 @@
 import axios from "axios";
-import { backendHostAddr } from "../Utils";
+import { baseURL } from "../Utils";
 
 const axiosInstance = axios.create({
-    baseURL: backendHostAddr,
+    baseURL: baseURL,
     timeout: 5000,
     headers: {
         "Content-Type": "application/json",

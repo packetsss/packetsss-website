@@ -15,7 +15,7 @@ import axiosInstance from "../../auth/Login";
 function loginDetect(user: any) {
     if (!document.cookie) {
         return (
-            <Button href="#/login/" className="fork-btn-inner">
+            <Button href="#/login" className="fork-btn-inner">
                 <Row>
                     <Col>Login Here</Col>
                 </Row>
@@ -25,16 +25,12 @@ function loginDetect(user: any) {
         return (
             <div style={{ paddingLeft: "50px" }}>
                 Hi,&nbsp;&nbsp;
-                <a
-                    style={{
-                        textDecoration: "none",
-                        fontSize: 25,
-                        color: "black",
-                    }}
-                    href="#/settings/"
+                <Link
+                    className="settings-icon"
+                    to="/settings"
                 >
                     {user ? user.username : null}
-                </a>
+                </Link>
             </div>
         );
     }
@@ -84,30 +80,40 @@ export default function TopBar() {
                     <a
                         className="topClickable"
                         href="https://github.com/packetsss"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <i className="topIcon fab fa-github-square"></i>
                     </a>
                     <a
                         className="topClickable"
                         href="https://www.linkedin.com/in/paul-pan001/"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <i className="topIcon fab fa-linkedin"></i>
                     </a>
                     <a
                         className="topClickable"
                         href="https://www.facebook.com/paul.pan.94849/"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <i className="topIcon fab fa-facebook-square"></i>
                     </a>
                     <a
                         className="topClickable"
                         href="https://twitter.com/pyj2001"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <i className="topIcon fab fa-twitter-square"></i>
                     </a>
                     <a
                         className="topClickable"
                         href="https://www.instagram.com/_popaz/"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <i className="topIcon fab fa-instagram-square"></i>
                     </a>
