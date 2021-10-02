@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-    Particle,
-    timeDelay,
-    disableRefresh,
-} from "../../../Utils";
+import { Particle, timeDelay, disableRefresh } from "../../../Utils";
 import { useCookies } from "react-cookie";
 import { store } from "react-notifications-component";
 

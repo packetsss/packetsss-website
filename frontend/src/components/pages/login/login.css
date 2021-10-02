@@ -1,47 +1,47 @@
 .login {
-  z-index: 0;
-  margin-top: 0%;
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    z-index: 0;
+    margin-top: 0%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .loginTitle {
-  font-size: 50px;
+    font-size: 50px;
 }
 
 .loginForm {
-  margin-top: 0px;
-  display: flex;
-  flex-direction: column;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 .loginForm > label {
-  margin: 5px 0;
+    margin: 5px 0;
 }
 
 .loginInput {
-  z-index: 0;
-  padding: 10px;
-  background-color: rgba(143, 142, 142, 0.151);
-  border: none;
-  border-radius: 10px;
+    z-index: 0;
+    padding: 10px;
+    background-color: rgba(143, 142, 142, 0.151);
+    border: none;
+    border-radius: 10px;
 }
 
 .loginInput:focus {
-  outline: none;
+    outline: none;
 }
 
 .loginButton {
-  z-index: 0;
-  margin-top: 20px;
-  cursor: pointer;
-  background-color: lightcoral;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
+    z-index: 0;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: lightcoral;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
 }

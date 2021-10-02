@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { store } from "react-notifications-component";
 import axiosInstance from "../../../auth/Login";
-import {
-    Particle,
-    disableRefresh,
-    timeDelay,
-} from "../../../Utils";
+import { Particle, disableRefresh, timeDelay } from "../../../Utils";
 import "./write.css";
 
 export default function Write() {
@@ -52,7 +48,7 @@ export default function Write() {
                         onScreen: true,
                     },
                 });
-                setPublishSuccess(resp.data.id)
+                setPublishSuccess(resp.data.id);
             })
             .catch((err: any) => {
                 store.addNotification({
@@ -68,7 +64,6 @@ export default function Write() {
                         onScreen: true,
                     },
                 });
-                
             });
     }
 

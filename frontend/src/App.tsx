@@ -15,52 +15,52 @@ import ReactNotification from "react-notifications-component";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
 function App() {
-  // modify animation time to 0.5s instead of 1s
-  document.documentElement.style.setProperty("--animate-duration", ".5s");
+    // modify animation time to 0.5s instead of 1s
+    document.documentElement.style.setProperty("--animate-duration", ".5s");
 
-  return (
-    // github page only supports hashRouter not browserRouter
-    <HashRouter basename={"/"}>
-      <div style={{ minHeight: "100vh" }}>
-        <ReactNotification />
-        <ScrollToTop />
-        <TopBar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/projects">
-            <Projects />
-          </Route>
-          <Route exact path="/register">
-            {<Register />}
-          </Route>
-          <Route exact path="/login">
-            {<Login />}
-          </Route>
-          <Route
-            exact
-            path="/post/:id"
-            render={(props) => <Single {...props} />}
-          />
+    return (
+        // github page only supports hashRouter not browserRouter
+        <HashRouter basename={"/"}>
+            <div style={{ minHeight: "100vh" }}>
+                <ReactNotification />
+                <ScrollToTop />
+                <TopBar />
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/about">
+                        <About />
+                    </Route>
+                    <Route exact path="/projects">
+                        <Projects />
+                    </Route>
+                    <Route exact path="/register">
+                        {<Register />}
+                    </Route>
+                    <Route exact path="/login">
+                        {<Login />}
+                    </Route>
+                    <Route
+                        exact
+                        path="/post/:id"
+                        render={(props) => <Single {...props} />}
+                    />
 
-          <Route exact path="/posts">
-            {<Posts />}
-          </Route>
-          <Route exact path="/write">
-            {<Write />}
-          </Route>
-          <Route exact path="/settings">
-            {<Setting />}
-          </Route>
-        </Switch>
-      </div>
-      <Footer />
-    </HashRouter>
-  );
+                    <Route exact path="/posts">
+                        {<Posts />}
+                    </Route>
+                    <Route exact path="/write">
+                        {<Write />}
+                    </Route>
+                    <Route exact path="/settings">
+                        {<Setting />}
+                    </Route>
+                </Switch>
+            </div>
+            <Footer />
+        </HashRouter>
+    );
 }
 
 export default App;

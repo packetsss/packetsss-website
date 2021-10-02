@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { store } from "react-notifications-component";
 
 import "./register.css";
-import {
-    Particle,
-    timeDelay,
-    disableRefresh,
-} from "../../../Utils";
+import { Particle, timeDelay, disableRefresh } from "../../../Utils";
 import axiosInstance from "../../../auth/Login";
 
 export default function Register() {

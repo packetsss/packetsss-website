@@ -1,44 +1,44 @@
 .register {
-  height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 0;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
 }
 
 .registerTitle {
-  font-size: 50px;
+    font-size: 50px;
 }
 
 .registerForm {
-  display: flex;
-  flex-direction: column;
-  z-index: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
 }
 
 .registerForm > label {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .registerInput {
-  padding: 10px;
-  background-color: rgba(143, 142, 142, 0.151);
-  border: none;
-  border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(143, 142, 142, 0.151);
+    border: none;
+    border-radius: 10px;
 }
 
 .registerInput:focus {
-  outline: none;
+    outline: none;
 }
 
 .registerButton {
-  margin-top: 20px;
-  cursor: pointer;
-  background-color: teal;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: teal;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
 }
