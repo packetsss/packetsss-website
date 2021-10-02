@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { confirmAlert } from "react-confirm-alert";
 import { store } from "react-notifications-component";
-import { Particle, disableRefresh, timeDelay, backendHostAddr } from "../../../Utils";
+import axiosInstance from "../../../auth/Login";
+import { Particle, disableRefresh, timeDelay } from "../../../Utils";
 import "./setting.css";
 
 function logout() {
@@ -39,14 +40,9 @@ function confirmDelete(props: any, token: string) {
         {
           label: "Yes",
           onClick: () => {
-            fetch(`${backendHostAddr}/api/users`, {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: token,
-                },
-              });
-            window.location.replace("#/posts");
+            axiosInstance.delete(`/api/users/`).then((resp: any) => {
+                window.location.replace("#/posts");
+            })
           },
         },
         {
@@ -70,7 +66,7 @@ export default function Setting() {
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsTitleUpdate">Update Your Account</span>
-          <span className="settingsTitleDelete"><a href="">Delete Account</a></span>
+          <span className="settingsTitleDelete"><a href="/">Delete Account</a></span>
         </div>
         <form className="settingsForm" onSubmit={disableRefresh}>
           <label>ONLY THE LOGOUT BUTTON WORKS FOR NOW //Profile Picture</label>

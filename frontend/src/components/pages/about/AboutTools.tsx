@@ -13,7 +13,7 @@ export function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            A sophomore at UC San Diego who love Machine Learning and always
+            A student at UC San Diego who love Machine Learning and always
             looking forward to learn new stuff.
             <br />
             <br />
