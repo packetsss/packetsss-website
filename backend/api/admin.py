@@ -8,7 +8,7 @@ from .models import Post
 @admin.register(Post)
 class PostModel(admin.ModelAdmin):
     # list out filters on right panel
-    list_filter = ("title", "description", "date", "owner_id")
+    list_filter = ("title", "author", "date", "slug", "author_name")
 
     # show display as well
-    list_display = ("title", "description", "date", "owner_id")
+    list_display = ("title", "author", "date", "slug", "author_name")

@@ -1,20 +1,22 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { store } from "react-notifications-component";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 import "./register.css";
+import axiosLogin from "../../../auth/Login";
 import { Particle, timeDelay, disableRefresh } from "../../../Utils";
-import axiosInstance from "../../../auth/Login";
-import { Link } from "react-router-dom";
 
 export default function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [registerSuccess, setRegisterSuccess] = useState(false);
+    const [passwordStrength, setPasswordStrength] = useState(0);
 
     async function tryRegister(body: object) {
-        axiosInstance
-            .post(`/api/users/`, body)
+        axiosLogin
+            .post(`/user/`, body)
             .then((resp: any) => {
                 store.addNotification({
                     title: "Register Success!",
@@ -29,12 +31,12 @@ export default function Register() {
                         onScreen: true,
                     },
                 });
-                setRegisterSuccess(!registerSuccess);
+                setRegisterSuccess(true);
             })
             .catch((err: any) => {
                 store.addNotification({
                     title: "Register Failed!",
-                    message: "This username is not available",
+                    message: "The username/email is not available",
                     type: "danger",
                     insert: "top",
                     container: "top-right",
@@ -49,7 +51,7 @@ export default function Register() {
     }
 
     useEffect(() => {
-        if (document.cookie) {
+        if (localStorage.getItem("refresh_token")) {
             window.location.replace("#/posts");
         }
         if (registerSuccess) {
@@ -67,8 +69,30 @@ export default function Register() {
                 <form
                     className="registerForm"
                     onSubmit={(env) => {
-                        disableRefresh(env);
-                        tryRegister({ username, email, password });
+                        if (passwordStrength > 1) {
+                            disableRefresh(env);
+                            tryRegister({ username, email, password });
+                        } else {
+                            store.addNotification({
+                                title: "Register Failed!",
+                                message: "The password is too weak",
+                                type: "danger",
+                                insert: "top",
+                                container: "top-right",
+                                animationIn: [
+                                    "animate__animated",
+                                    "animate__shakeX",
+                                ],
+                                animationOut: [
+                                    "animate__animated",
+                                    "animate__fadeOut",
+                                ],
+                                dismiss: {
+                                    duration: timeDelay,
+                                    onScreen: true,
+                                },
+                            });
+                        }
                     }}
                 >
                     <label>*Username</label>
@@ -98,6 +122,17 @@ export default function Register() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    <PasswordStrengthBar
+                        scoreWordStyle={{
+                            textAlign: "left",
+                            paddingLeft: "5px",
+                        }}
+                        password={password}
+                        minLength={8}
+                        shortScoreWord={"weak"}
+                        onChangeScore={(score) => setPasswordStrength(score)}
+                    />
+
                     <button className="registerButton" type="submit">
                         Register
                     </button>

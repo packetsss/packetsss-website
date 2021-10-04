@@ -10,10 +10,10 @@ import {
 } from "react-icons/ai";
 
 import "./navbar.css";
-import axiosInstance from "../../auth/Login";
+import axiosAccess from "../../auth/Access";
 
 function loginDetect(user: any) {
-    if (!document.cookie) {
+    if (!localStorage.getItem("refresh_token")) {
         return (
             <Button href="#/login" className="fork-btn-inner">
                 <Row>
@@ -25,10 +25,7 @@ function loginDetect(user: any) {
         return (
             <div style={{ paddingLeft: "50px" }}>
                 Hi,&nbsp;&nbsp;
-                <Link
-                    className="settings-icon"
-                    to="/settings"
-                >
+                <Link className="settings-icon" to="/settings">
                     {user ? user.username : null}
                 </Link>
             </div>
@@ -40,8 +37,8 @@ export default function TopBar() {
     const cookies = `Token ${document.cookie.split("=")[1]}`;
 
     useEffect(() => {
-        document.cookie ? (
-            axiosInstance.get(`/api/users/`).then((resp: any) => {
+        localStorage.getItem("refresh_token") ? (
+            axiosAccess.get(`/user/`).then((resp: any) => {
                 setUser(resp.data[0]);
             })
         ) : (

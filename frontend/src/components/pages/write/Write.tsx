@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { store } from "react-notifications-component";
-import axiosInstance from "../../../auth/Login";
+import axiosAccess from "../../../auth/Access";
 import { Particle, disableRefresh, timeDelay } from "../../../Utils";
 import "./write.css";
 
@@ -10,10 +10,9 @@ export default function Write() {
     const [titleChange, setTitleChange] = useState<any>();
     const [contentChange, setContentChange] = useState<any>();
     const [publishSuccess, setPublishSuccess] = useState(-1);
-    const cookies = `Token ${document.cookie.split("=")[1]}`;
 
     useEffect(() => {
-        if (!document.cookie) {
+        if (!localStorage.getItem("refresh_token")) {
             window.location.replace("#/login");
             window.location.reload();
         }
@@ -23,16 +22,17 @@ export default function Write() {
             }, timeDelay);
         }
 
-        axiosInstance
-            .get(`/api/users/`)
+        axiosAccess
+            .get(`user/`)
             .then((resp: any) => {
                 setUser(resp.data[0]);
             })
             .catch((error) => console.log(error));
-    }, [publishSuccess, cookies]);
+    }, [publishSuccess]);
 
-    function createPost(postBody: any, token: string) {
-        axiosInstance
+    function createPost(postBody: any) {
+        console.log(postBody);
+        axiosAccess
             .post(`/api/posts/`, postBody)
             .then((resp: any) => {
                 store.addNotification({
@@ -80,15 +80,12 @@ export default function Write() {
                 className="writeForm"
                 onSubmit={(env) => {
                     disableRefresh(env);
-                    createPost(
-                        {
-                            title: titleChange.target.value,
-                            description: contentChange.target.value,
-                            owner_id: user.id,
-                            owner_name: user.username,
-                        },
-                        cookies
-                    );
+                    createPost({
+                        title: titleChange.target.value,
+                        content: contentChange.target.value,
+                        author: user.id,
+                        author_name: user.username,
+                    });
                 }}
             >
                 <div className="writeFormGroup">

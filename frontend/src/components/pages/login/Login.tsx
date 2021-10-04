@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
-import { Particle, timeDelay, disableRefresh } from "../../../Utils";
-import { useCookies } from "react-cookie";
+import { Particle, timeDelay, disableRefresh, getAuth } from "../../../Utils";
+// import { useCookies } from "react-cookie";
 import { store } from "react-notifications-component";
 
 import "animate.css";
 import "./login.css";
 import "react-notifications-component/dist/theme.css";
-import axiosInstance from "../../../auth/Login";
+import axiosLogin from "../../../auth/Login";
 import { Link } from "react-router-dom";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [cookies, setCookies] = useCookies(["myToken"]);
+    // const [cookies, setCookies] = useCookies(["myToken"]);
 
     async function tryLogin(body: object) {
-        axiosInstance
-            .post(`/auth/`, body)
+        console.log(getAuth(body));
+        axiosLogin
+            .post(`/auth/token/`, getAuth(body))
             .then((resp: any) => {
                 store.addNotification({
                     title: "Login Success!",
@@ -31,7 +32,22 @@ export default function Login() {
                         onScreen: true,
                     },
                 });
-                setCookies("myToken", resp.data.token, { path: "/" });
+                window.localStorage.setItem(
+                    "access_token",
+                    resp.data.access_token
+                );
+                window.localStorage.setItem(
+                    "refresh_token",
+                    resp.data.refresh_token
+                );
+
+                // delay for 3 sec and then redirect
+                setTimeout(() => {
+                    window.location.replace("#/posts");
+                    window.location.reload();
+                }, timeDelay);
+
+                // setCookies("myToken", resp.data.token, { path: "/" });
             })
             .catch((err: any) => {
                 store.addNotification({
@@ -53,17 +69,10 @@ export default function Login() {
 
     // redirect to article
     useEffect(() => {
-        if (document.cookie && !username) {
+        if (localStorage.getItem("refresh_token")) {
             window.location.replace("#/posts");
         }
-        if (cookies.myToken) {
-            // delay for 3 sec and then redirect
-            setTimeout(() => {
-                window.location.replace("#/posts");
-                window.location.reload();
-            }, timeDelay);
-        }
-    }, [cookies.myToken, username]);
+    }, []);
 
     return (
         <div>

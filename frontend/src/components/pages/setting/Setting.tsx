@@ -2,8 +2,13 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { confirmAlert } from "react-confirm-alert";
 import { store } from "react-notifications-component";
-import axiosInstance from "../../../auth/Login";
-import { Particle, disableRefresh, timeDelay } from "../../../Utils";
+import axiosAccess from "../../../auth/Access";
+import {
+    Particle,
+    disableRefresh,
+    timeDelay,
+    removeTokens,
+} from "../../../Utils";
 import "./setting.css";
 
 function logout() {
@@ -20,15 +25,16 @@ function logout() {
             onScreen: true,
         },
     });
+    removeTokens();
 
-    document.cookie.split(";").forEach((c) => {
-        document.cookie = c
-            .replace(/^ +/, "")
-            .replace(
-                /=.*/,
-                "=;expires=" + new Date().toUTCString() + ";path=/"
-            );
-    });
+    // document.cookie.split(";").forEach((c) => {
+    //     document.cookie = c
+    //         .replace(/^ +/, "")
+    //         .replace(
+    //             /=.*/,
+    //             "=;expires=" + new Date().toUTCString() + ";path=/"
+    //         );
+    // });
     setTimeout(() => {
         window.location.replace("#/");
         window.location.reload();
@@ -43,7 +49,7 @@ function confirmDelete(props: any, token: string) {
             {
                 label: "Yes",
                 onClick: () => {
-                    axiosInstance.delete(`/api/users/`).then((resp: any) => {
+                    axiosAccess.delete(`/api/users/`).then((resp: any) => {
                         window.location.replace("#/posts");
                     });
                 },
@@ -58,7 +64,7 @@ function confirmDelete(props: any, token: string) {
 
 export default function Setting() {
     useEffect(() => {
-        if (!document.cookie) {
+        if (!localStorage.getItem("refresh_token")) {
             window.location.replace("#/login");
             window.location.reload();
         }

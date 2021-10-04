@@ -1,18 +1,24 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
+import axiosAccess from "./auth/Access";
 
-// export const backendHostAddr = "https://packetsss-django-backend.herokuapp.com";
+// export const baseURL = "https://packetsss-django-backend.herokuapp.com";
 export const baseURL = "http://127.0.0.1:8000";
 
+export const getAuth = (body: any) => {
+    return {
+        ...body,
+        grant_type: "password",
+        client_id: "C1cGDN1IJHXnCzidp9HP6rR7pxxOGh8lztUn6riP",
+    };
+};
+
 // delete all cookies
-export function eraseCookies() {
-    var cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++) {
-        var spcook = cookies[i].split("=");
-        document.cookie =
-            spcook[0] + "=;expires=Thu, 21 Sep 1979 00:00:01 UTC;";
-    }
+export function removeTokens() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    axiosAccess.defaults.headers!.Authorization = "";
 }
 
 // use when submitting forms
@@ -23,31 +29,23 @@ export function disableRefresh(event: any) {
 // delay for notifications
 export const timeDelay: number = 2000;
 
-const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-];
-
 export function getDate(now: string) {
-    let time = now.split("-");
-    let currentDate = `${monthNames[parseInt(time[1], 10) - 1]} ${time[2]}, ${
-        time[0]
-    }`;
-    return currentDate;
+    let options: any = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(now).toLocaleDateString("en-US", options);
 }
 
 export function randomRange(min: number, max: number) {
     return Math.floor(Math.random() * (max - min) + min);
+}
+
+export function ScrollToTop() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
 }
 
 export function Particle() {
@@ -111,12 +109,4 @@ export function Particle() {
     );
 }
 
-export function ScrollToTop() {
-    const { pathname } = useLocation();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-
-    return null;
-}

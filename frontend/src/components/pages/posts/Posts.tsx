@@ -1,10 +1,10 @@
 import "./posts.css";
-import { Particle, eraseCookies, getDate, randomRange } from "../../../Utils";
+import { Particle, removeTokens, getDate, randomRange } from "../../../Utils";
 
 import { useState, useEffect } from "react";
 import { Col, Container } from "react-bootstrap";
-import axiosInstance from "../../../auth/Login";
 import { Link } from "react-router-dom";
+import axiosAccess from "../../../auth/Access";
 
 // single post
 function Post(props: any) {
@@ -26,7 +26,7 @@ function Post(props: any) {
                     <span className="postDate">{getDate(props.post.date)}</span>
                 </div>
             </Link>
-            <p className="postDesc">{props.post.description}</p>
+            <p className="postDesc">{props.post.content}</p>
         </div>
     ) : null;
 }
@@ -41,7 +41,7 @@ function getPosts(posts: any) {
             );
         });
     } catch {
-        return eraseCookies();
+        return removeTokens();
     }
 }
 
@@ -50,11 +50,11 @@ export default function Posts() {
     const cookies = `Token ${document.cookie.split("=")[1]}`;
 
     useEffect(() => {
-        if (!document.cookie) {
+        if (!localStorage.getItem("refresh_token")) {
             window.location.replace("#/login");
             window.location.reload();
         }
-        axiosInstance
+        axiosAccess
             .get(`/api/posts/`)
             .then((resp: any) => {
                 setPosts(resp.data);

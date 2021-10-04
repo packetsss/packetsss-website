@@ -6,10 +6,10 @@ import { store } from "react-notifications-component";
 
 import "./single.css";
 import { Particle, getDate, timeDelay, disableRefresh } from "../../../Utils";
-import axiosInstance from "../../../auth/Login";
+import axiosAccess from "../../../auth/Access";
 
-async function updatePost(postID: number, body: any, token: string) {
-    axiosInstance.put(`/api/posts/${postID}/`, body).then((resp: any) => {
+async function updatePost(postID: number, body: any) {
+    axiosAccess.put(`/api/posts/${postID}/`, body).then((resp: any) => {
         store.addNotification({
             title: "Edit Success!",
             message: "You've successfully updated your post",
@@ -48,34 +48,25 @@ function onBtnClick(
     postID: number,
     titleChange: any,
     contentChange: any,
-    contents: any,
-    token: string
+    contents: any
 ) {
     // update title and body
     if (titleChange || contentChange) {
         contents.title = titleChange
             ? titleChange.target.value
             : contents.title;
-        contents.description = contentChange
+        contents.content = contentChange
             ? contentChange.target.value
-            : contents.description;
+            : contents.content;
 
-        updatePost(
-            postID,
-            {
-                title: contents.title,
-                description: contents.description,
-                owner_id: contents.owner_id,
-            },
-            token
-        );
+        updatePost(postID, contents);
     } else {
         <div></div>;
     }
-    return [contents.title, contents.description];
+    return [contents.title, contents.content];
 }
 
-function confirmDelete(props: any, token: string) {
+function confirmDelete(props: any) {
     confirmAlert({
         title: "Confirm to delete",
         message: "Are you sure to delete this post?",
@@ -84,7 +75,7 @@ function confirmDelete(props: any, token: string) {
                 label: "Yes",
                 onClick: () => {
                     // delete post
-                    axiosInstance
+                    axiosAccess
                         .delete(`/api/posts/${props.match.params.id}/`)
                         .then((resp: any) => {
                             window.location.replace("#/posts");
@@ -101,33 +92,30 @@ function confirmDelete(props: any, token: string) {
 }
 
 export default function Single(props: any) {
-    // cookies reading
-    const cookies = `Token ${document.cookie.split("=")[1]}`;
-
     useEffect(() => {
-        if (!document.cookie) {
+        if (!localStorage.getItem("refresh_token")) {
             window.location.replace("#/login");
         }
     }, []);
 
     // order of useEffect is important
     useEffect(() => {
-        axiosInstance
-            .get(`/api/users/`)
+        axiosAccess
+            .get(`/user/`)
             .then((resp: any) => {
                 setUser(resp.data[0]);
             })
             .catch((error) => console.log(error));
-    }, [cookies]);
+    }, []);
 
     useEffect(() => {
-        axiosInstance
+        axiosAccess
             .get(`/api/posts/${props.match.params.id}`)
             .then((resp: any) => {
                 setContents(resp.data);
             })
             .catch((error) => console.log(error));
-    }, [cookies, props.match.params.id]);
+    }, [props.match.params.id]);
 
     // content editing
     const [isEditing, setIsEditing] = useState(false);
@@ -139,7 +127,7 @@ export default function Single(props: any) {
     // content reading
     const [contents, setContents] = useState<any>();
 
-    // check both contents and user is loaded
+    // check both contents and user are loaded
     return contents && user ? (
         <Container fluid className="single">
             <Particle />
@@ -155,14 +143,12 @@ export default function Single(props: any) {
                     onSubmit={(env) => {
                         disableRefresh(env);
                         setIsEditing(!isEditing);
-                        contents.owner_name = user.username;
 
-                        [contents.title, contents.description] = onBtnClick(
+                        [contents.title, contents.content] = onBtnClick(
                             props.match.params.id,
                             titleChange,
                             contentChange,
-                            contents,
-                            cookies
+                            contents
                         );
                     }}
                 >
@@ -176,7 +162,7 @@ export default function Single(props: any) {
                             )}
                         </Col>
                         {/* check ownership */}
-                        {user && user.id === contents.owner_id ? (
+                        {user.id === contents.author ? (
                             <Col className="singlePostEdit">
                                 {!isEditing ? (
                                     <div>
@@ -188,9 +174,7 @@ export default function Single(props: any) {
                                         ></i>
                                         <i
                                             className="singlePostIcon far fa-trash-alt"
-                                            onClick={() =>
-                                                confirmDelete(props, cookies)
-                                            }
+                                            onClick={() => confirmDelete(props)}
                                         ></i>
                                     </div>
                                 ) : (
@@ -214,7 +198,7 @@ export default function Single(props: any) {
                     </Row>
                     <Col className="singlePostInfo">
                         <Row className="singlePostAuthor">
-                            Author:&nbsp;<b>{user.username}</b>
+                            Author:&nbsp;<b>{contents.author_name}</b>
                         </Row>
                         <Row className="singlePostDate">
                             {getDate(contents.date)}
@@ -227,7 +211,7 @@ export default function Single(props: any) {
                             {onEditing(
                                 isEditing,
                                 setContentChange,
-                                contents.description
+                                contents.content
                             )}
                         </p>
                     </Col>
@@ -235,6 +219,6 @@ export default function Single(props: any) {
             </Container>
         </Container>
     ) : (
-        <Container></Container>
+        <div></div>
     );
 }
