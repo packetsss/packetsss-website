@@ -15,7 +15,6 @@ export default function Login() {
     // const [cookies, setCookies] = useCookies(["myToken"]);
 
     async function tryLogin(body: object) {
-        console.log(getAuth(body));
         axiosLogin
             .post(`/auth/token/`, getAuth(body))
             .then((resp: any) => {

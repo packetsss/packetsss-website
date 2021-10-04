@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
 import axiosAccess from "./auth/Access";
 
-// export const baseURL = "https://packetsss-django-backend.herokuapp.com";
-export const baseURL = "http://127.0.0.1:8000";
+export const baseURL = "https://packetsss-django-backend.herokuapp.com";
+// export const baseURL = "http://127.0.0.1:8000";
 
 export const getAuth = (body: any) => {
     return {
