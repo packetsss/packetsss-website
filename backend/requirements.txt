@@ -7,3 +7,5 @@ django-storages
 whitenoise
 django-cors-headers
 gunicorn
+python-dotenv
+drf_social_oauth2

@@ -1,3 +1,6 @@
+# set secret
+heroku config:set [key name]:"key"
+
 # push to heroku
 git push heroku master
 
