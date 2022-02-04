@@ -13,3 +13,10 @@ coreapi
 pyyaml
 requests
 python-dotenv
+
+channels
+
+boto
+boto3
+Pillow
+s3transfer

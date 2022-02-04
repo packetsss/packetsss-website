@@ -22,11 +22,19 @@ function Post(props: any) {
                 ></img>
                 <div className="postInfo">
                     <div className="postCategories"></div>
-                    <span className="postTitle">{props.post.title}</span>
+                    <span className="postTitle">
+                        {props.post.title.length < 18
+                            ? props.post.title
+                            : props.post.title.slice(0, 18) + "..."}
+                    </span>
                     <span className="postDate">{getDate(props.post.date)}</span>
                 </div>
             </Link>
-            <p className="postDesc">{props.post.content}</p>
+            <p className="postDesc">
+                {props.post.content.length < 30
+                    ? props.post.content
+                    : props.post.content.slice(0, 30)}
+            </p>
         </div>
     ) : null;
 }

@@ -38,7 +38,11 @@ export default function Login() {
                 window.localStorage.setItem(
                     "refresh_token",
                     resp.data.refresh_token
-                );
+                )
+                window.localStorage.setItem(
+                    "expires_in",
+                    Math.ceil(Date.now() / 1000) + resp.data.expires_in
+                )
 
                 // delay for 3 sec and then redirect
                 setTimeout(() => {

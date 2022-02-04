@@ -47,6 +47,7 @@
 }
 
 .postTitle {
+    padding: 0 8%;
     font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
     font-size: 24px;
     font-weight: 900;
@@ -58,10 +59,15 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     transition: all 0.4s ease 0s;
+    word-break: break-all;
+    white-space: normal;
 }
 
 .postTitle:hover {
+    padding: 0 8%;
     transform: scale(1.1);
+    word-break: break-all;
+    white-space: normal;
 }
 
 .postDate {
@@ -74,6 +80,7 @@
 }
 
 .postDesc {
+    padding: 0 8%;
     font-family: "Varela Round", Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -85,5 +92,6 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    white-space: pre-line;
+    word-break: break-all;
+    white-space: normal;
 }

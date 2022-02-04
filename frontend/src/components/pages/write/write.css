@@ -76,3 +76,7 @@
     background-color: rgb(5, 158, 158);
     transform: scale(1.05);
 }
+
+.writeFormGroup input#fileInput{
+    display: none;
+}

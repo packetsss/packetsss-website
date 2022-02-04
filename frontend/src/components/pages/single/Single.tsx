@@ -26,16 +26,24 @@ async function updatePost(postID: number, body: any) {
     });
 }
 
-function onEditing(isEditing: boolean, func: any, value: string) {
+function onEditing(
+    isEditing: boolean,
+    func: any,
+    value: string,
+    maxLen: number,
+    rowConst: number
+) {
     if (isEditing) {
         return (
             <textarea
                 required
+                id={`${maxLen}`}
                 className="form-control z-depth-1"
                 style={{ whiteSpace: "pre-wrap" }}
                 onChange={func}
                 defaultValue={value}
-                rows={value.length / 50}
+                rows={value.length / rowConst}
+                maxLength={maxLen}
                 placeholder="Please enter something at least..."
             />
         );
@@ -158,8 +166,11 @@ export default function Single(props: any) {
                             {onEditing(
                                 isEditing,
                                 setTitleChange,
-                                contents.title
+                                contents.title,
+                                100, // max length
+                                30 //row length
                             )}
+
                         </Col>
                         {/* check ownership */}
                         {user.id === contents.author ? (
@@ -180,6 +191,7 @@ export default function Single(props: any) {
                                 ) : (
                                     <div>
                                         <button
+                                            aria-label="btn"
                                             type="submit"
                                             className="singlePostIcon far fa-check-square"
                                         ></button>
@@ -211,7 +223,9 @@ export default function Single(props: any) {
                             {onEditing(
                                 isEditing,
                                 setContentChange,
-                                contents.content
+                                contents.content,
+                                777, // max length
+                                80 //row length
                             )}
                         </p>
                     </Col>

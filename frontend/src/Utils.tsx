@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
 import axiosAccess from "./auth/Access";
 
-export const baseURL = "https://packetsss-django-backend.herokuapp.com";
-// export const baseURL = "http://127.0.0.1:8000";
+// export const baseURL = "https://packetsss-django-backend.herokuapp.com";
+export const baseURL = "http://127.0.0.1:8000";
 
-export const getAuth = (body: any) => {
+export const getAuth = (body: any, grantType: string = "password") => {
     return {
         ...body,
-        grant_type: "password",
+        grant_type: grantType,
         client_id: "C1cGDN1IJHXnCzidp9HP6rR7pxxOGh8lztUn6riP",
     };
 };
@@ -18,6 +18,7 @@ export const getAuth = (body: any) => {
 export function removeTokens() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    localStorage.removeItem("expires_in");
     axiosAccess.defaults.headers!.Authorization = "";
 }
 

@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # "rest_framework.authtoken",
     # installed
+    "storages",
+    "channels",
     "corsheaders",
     "rest_framework",
     "oauth2_provider",
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     # own apps
     "api",
     "user",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -53,19 +56,28 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = (
-    False  # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+    False  # If this is True then `CORS_ALLOWED_ORIGINS` will not have any effect
 )
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://packetsss.live"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://packetsss.live",
+    "https://code.iconify.design",
+]
+CORS_ORIGIN_WHITELIST = "http://localhost:3000"
 
 CORS_ALLOW_HEADERS = (
     "content-disposition",
-    "accept-encoding",
-    "content-type",
     "accept",
-    "origin",
+    "accept-encoding",
     "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 )
 
 ROOT_URLCONF = "backend.urls"
@@ -122,9 +134,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -138,9 +147,29 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+# AWS
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_S3_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_HOST_REGION = os.environ.get("AWS_HOST_REGION")
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_DEFAULT_ACL = "public-read"
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = "/static/"
+# Static
+STATIC_LOCATION = "static"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "backend/static"),
+]
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# Media
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = 'backend.storage_backends.PublicMediaStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -175,6 +204,12 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
 )
 
+OAUTH2_PROVIDER = {
+    "ACCESS_TOKEN_EXPIRE_SECONDS": 120,  # 2 mins
+    "REFRESH_TOKEN_EXPIRE_SECONDS": 1.3e6,  # 15 days
+}
+
+
 # Facebook configuration
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY")
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET")
@@ -186,4 +221,7 @@ SOCIAL_AUTH_USER_FIELDS = ["email", "username", "first_name", "password"]
 
 AUTH_USER_MODEL = "user.CustomUser"
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
+
+# chat/channels
+ASGI_APPLICATION = "core.routing.application"

@@ -1,3 +1,7 @@
+import ReactNotification from "react-notifications-component";
+import { HashRouter, Switch, Route } from "react-router-dom";
+
+import "./App.css";
 import TopBar from "./components/navbar/NavBar";
 import Home from "./components/pages/home/Home";
 import Single from "./components/pages/single/Single";
@@ -9,10 +13,8 @@ import Login from "./components/pages/login/Login";
 import About from "./components/pages/about/About";
 import Register from "./components/pages/register/Register";
 import Footer from "./components/footer/Footer";
+import { Chat } from "./components/pages/chat/Chat";
 import { ScrollToTop } from "./Utils";
-
-import ReactNotification from "react-notifications-component";
-import { HashRouter, Switch, Route } from "react-router-dom";
 
 function App() {
     // modify animation time to 0.5s instead of 1s
@@ -21,7 +23,7 @@ function App() {
     return (
         // github page only supports hashRouter not browserRouter
         <HashRouter basename={"/"}>
-            <div style={{ minHeight: "100vh" }}>
+            <div className="mainDiv">
                 <ReactNotification />
                 <ScrollToTop />
                 <TopBar />
@@ -55,6 +57,9 @@ function App() {
                     </Route>
                     <Route exact path="/settings">
                         {<Setting />}
+                    </Route>
+                    <Route exact path="/chat">
+                        {<Chat />}
                     </Route>
                 </Switch>
             </div>

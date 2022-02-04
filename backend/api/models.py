@@ -23,7 +23,7 @@ class Post(models.Model):
         ordering = [("-date")]
 
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = models.TextField(max_length=777)
     date = models.DateTimeField(default=timezone.now)
     slug = AutoSlugField(populate_from="title", unique=True, slugify=custom_slugify)
     author = models.ForeignKey(

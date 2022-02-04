@@ -23,10 +23,9 @@ function loginDetect(user: any) {
         );
     } else {
         return (
-            <div style={{ paddingLeft: "50px" }}>
-                Hi,&nbsp;&nbsp;
-                <Link className="settings-icon" to="/settings">
-                    {user ? user.username : null}
+            <div className="loginDetectDiv">
+                <Link className="settings-icon" to="/settings" >
+                    Hi,&nbsp;&nbsp;{user ? user.username : null}
                 </Link>
             </div>
         );
@@ -75,6 +74,7 @@ export default function TopBar() {
                         }}
                     ></Navbar.Toggle>
                     <a
+                        aria-label="link"
                         className="topClickable"
                         href="https://github.com/packetsss"
                         target="_blank"
@@ -83,6 +83,7 @@ export default function TopBar() {
                         <i className="topIcon fab fa-github-square"></i>
                     </a>
                     <a
+                        aria-label="link"
                         className="topClickable"
                         href="https://www.linkedin.com/in/paul-pan001/"
                         target="_blank"
@@ -91,6 +92,7 @@ export default function TopBar() {
                         <i className="topIcon fab fa-linkedin"></i>
                     </a>
                     <a
+                        aria-label="link"
                         className="topClickable"
                         href="https://www.facebook.com/paul.pan.94849/"
                         target="_blank"
@@ -99,6 +101,7 @@ export default function TopBar() {
                         <i className="topIcon fab fa-facebook-square"></i>
                     </a>
                     <a
+                        aria-label="link"
                         className="topClickable"
                         href="https://twitter.com/pyj2001"
                         target="_blank"
@@ -107,6 +110,7 @@ export default function TopBar() {
                         <i className="topIcon fab fa-twitter-square"></i>
                     </a>
                     <a
+                        aria-label="link"
                         className="topClickable"
                         href="https://www.instagram.com/_popaz/"
                         target="_blank"
@@ -177,8 +181,11 @@ export default function TopBar() {
                                     WRITE
                                 </Nav.Link>
                             </Nav.Item>
-
-                            <div className="fork-btn">{loginDetect(user)}</div>
+                            <Nav.Item>
+                                <div className="fork-btn">
+                                    {loginDetect(user)}
+                                </div>
+                            </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

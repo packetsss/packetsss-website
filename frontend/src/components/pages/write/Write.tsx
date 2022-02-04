@@ -92,11 +92,7 @@ export default function Write() {
                     <label htmlFor="fileInput">
                         <i className="writeIcon fas fa-plus"></i>
                     </label>
-                    <input
-                        id="fileInput"
-                        type="file"
-                        style={{ display: "none" }}
-                    />
+                    <input aria-label="input1" id="fileInput" type="file" />
                     <input
                         required
                         className="writeInput"

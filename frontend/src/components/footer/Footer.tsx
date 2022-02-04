@@ -24,6 +24,7 @@ export default function Footer() {
                     <ul className="footer-icons">
                         <li className="social-icons">
                             <a
+                                aria-label="link"
                                 href="https://github.com/packetsss"
                                 style={{ color: "white" }}
                                 target="_blank"
@@ -34,6 +35,7 @@ export default function Footer() {
                         </li>
                         <li className="social-icons">
                             <a
+                            aria-label="link"
                                 href="https://www.linkedin.com/in/paul-pan001/"
                                 style={{ color: "white" }}
                                 target="_blank"
@@ -44,6 +46,7 @@ export default function Footer() {
                         </li>
                         <li className="social-icons">
                             <a
+                            aria-label="link"
                                 href="https://www.facebook.com/paul.pan.94849/"
                                 style={{ color: "white" }}
                                 target="_blank"
@@ -54,6 +57,7 @@ export default function Footer() {
                         </li>
                         <li className="social-icons">
                             <a
+                            aria-label="link"
                                 href="https://twitter.com/pyj2001"
                                 style={{ color: "white" }}
                                 target="_blank"
@@ -64,6 +68,7 @@ export default function Footer() {
                         </li>
                         <li className="social-icons">
                             <a
+                            aria-label="link"
                                 href="https://www.instagram.com/_popaz/"
                                 style={{ color: "white" }}
                                 target="_blank"

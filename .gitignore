@@ -26,3 +26,5 @@ yarn-error.log*
 
 __pycache__/
 migrations/
+
+AWS_accessKeys.csv

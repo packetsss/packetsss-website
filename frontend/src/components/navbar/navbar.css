@@ -1,7 +1,31 @@
+.settings-icon {
+    text-decoration: none !important;
+    font-size: 22px;
+    color: black;
+}
+.settings-icon:hover {
+    color: black;
+    transform: scale(1.2) !important;
+}
+
+.loginDetectDiv {
+    padding-top: 7px;
+    padding-left: 7vw;
+}
+
+@media screen and (max-width: 1002px){
+    .loginDetectDiv {
+        padding-top: 7px;
+        padding-left: 0;
+        margin-left: 0;
+    }
+}
+
 .top {
     width: 100%;
     height: 50px;
     background-color: white;
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     display: flex;
@@ -21,6 +45,7 @@
     background-color: #dedde2d8 !important;
     transition: all 0.3s ease-out 0s !important;
     box-shadow: 0px 10px 10px 0px rgba(9, 5, 29, 0.171) !important;
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px) !important;
 }
 
@@ -105,6 +130,7 @@
     .nav-link {
         padding: 0.7rem 1rem !important;
     }
+
 }
 
 .navbar-nav .nav-item {
@@ -179,10 +205,4 @@
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(235, 211, 130, 0.911);
     border-radius: 12px;
-}
-
-.settings-icon{
-    text-decoration: none;
-    font-size: 25;
-    color: black;
 }
