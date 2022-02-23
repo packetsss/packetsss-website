@@ -1,8 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ImBlog } from "react-icons/im";
 import { CgFileDocument } from "react-icons/cg";
-import { Row, Col, Container, Button, Nav, Navbar } from "react-bootstrap/";
+import {
+    Row,
+    Col,
+    Container,
+    Button,
+    Nav,
+    Navbar,
+    Dropdown,
+} from "react-bootstrap/";
 import {
     AiOutlineHome,
     AiOutlineFundProjectionScreen,
@@ -10,7 +18,10 @@ import {
 } from "react-icons/ai";
 
 import "./navbar.css";
+
 import axiosAccess from "../../auth/Access";
+import { logout } from "../pages/setting/Setting";
+import { defaultAvatar } from "../utils/Utils";
 
 function loginDetect(user: any) {
     if (!localStorage.getItem("refresh_token")) {
@@ -21,15 +32,80 @@ function loginDetect(user: any) {
                 </Row>
             </Button>
         );
-    } else {
-        return (
-            <div className="loginDetectDiv">
-                <Link className="settings-icon" to="/settings" >
-                    Hi,&nbsp;&nbsp;{user ? user.username : null}
-                </Link>
-            </div>
-        );
     }
+
+    const CustomToggle = React.forwardRef<any, any>(
+        ({ onClick, value }, ref) => (
+            <a
+                href="google.com"
+                ref={ref}
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick(e);
+                }}
+            >
+                {user ? (
+                    <div className="settings-icon">
+                        <img
+                            className="settings-icon-avatar"
+                            src={
+                                user.avatar
+                                    ? user.avatar
+                                    : "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg"
+                            }
+                            alt="avatar"
+                        ></img>
+                        {/* <h2>&nbsp;&nbsp;{user.username}</h2> */}
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+            </a>
+            // </Link>
+        )
+    );
+    const profileBrief: any = React.forwardRef<any, any>(
+        ({ onClick, value }, ref) =>
+            user ? (
+                <Container className="dropdownIcon">
+     
+                        <img
+                            className="dropdownIconAvatar"
+                            src={
+                                user.avatar
+                                    ? user.avatar
+                                    : defaultAvatar
+                            }
+                            alt="avatar"
+                        ></img>
+                        <br />
+                        <label className="dropdownUser">{user.username}</label>
+                  
+                </Container>
+            ) : (
+                <div></div>
+            )
+    );
+
+    return (
+        <div className="loginDetectDiv">
+            <Dropdown className="profileDropdown">
+                <Dropdown.Toggle as={CustomToggle}></Dropdown.Toggle>
+                <Dropdown.Menu className="profileDropdownMenu">
+                    <Dropdown.Item as={profileBrief}></Dropdown.Item>
+                    <Dropdown.Item href="#/chat">Messages</Dropdown.Item>
+                    <Dropdown.Item href="#/settings">Settings</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item
+                        className="profileDropdownMenuLogout"
+                        onClick={logout}
+                    >
+                        Logout
+                    </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        </div>
+    );
 }
 
 export default function TopBar() {
@@ -37,9 +113,14 @@ export default function TopBar() {
 
     useEffect(() => {
         localStorage.getItem("refresh_token") ? (
-            axiosAccess.get(`/user/`).then((resp: any) => {
-                setUser(resp.data[0]);
-            })
+            axiosAccess
+                .get(`/user/`)
+                .then((resp: any) => {
+                    setUser(resp.data[0]);
+                })
+                .catch((err: any) => {
+                    console.log(err.response);
+                })
         ) : (
             <div></div>
         );
@@ -118,6 +199,7 @@ export default function TopBar() {
                     >
                         <i className="topIcon fab fa-instagram-square"></i>
                     </a>
+
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav defaultActiveKey="#home">
                             <Nav.Item>
@@ -181,13 +263,11 @@ export default function TopBar() {
                                     WRITE
                                 </Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <div className="fork-btn">
-                                    {loginDetect(user)}
-                                </div>
-                            </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
+                    <Nav.Item>
+                        <div className="fork-btn">{loginDetect(user)}</div>
+                    </Nav.Item>
                 </Container>
             </Navbar>
         </div>

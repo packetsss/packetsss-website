@@ -10,10 +10,10 @@ urlpatterns = [
     # api / admin page
     path("api/", include("api.urls")),
     path("admin/", admin.site.urls),
-    # auth
+    # auth and user
     path("auth/", include("drf_social_oauth2.urls", namespace="drf")),
-    # path("auth/", obtain_auth_token),  # allow use post to get token
     path("user/", include("user.urls", namespace="user")),
+    path("", include("rest_friendship.urls")),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     # docs
     path("", TemplateView.as_view(template_name="index.html")),
@@ -25,6 +25,7 @@ urlpatterns = [
             description="Go to /docs for API documentation",
             version="0.0.1",
         ),
+        # use reverse("openapi-schema") to get url
         name="openapi-schema",
     ),
     # chat

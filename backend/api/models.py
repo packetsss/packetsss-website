@@ -7,6 +7,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from autoslug import AutoSlugField
+from django.template.defaultfilters import truncatechars
 
 
 def custom_slugify(value: str):
@@ -30,9 +31,28 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, rel="post"
     )
     author_name = models.CharField(max_length=100)
-    
 
     objects = models.Manager()
 
     def __str__(self):
         return self.title
+
+    @property
+    def short_author(self):
+        return truncatechars(self.author, 10)
+
+    @property
+    def short_date(self):
+        return truncatechars(self.date, 11)
+    
+    @property
+    def short_title(self):
+        return truncatechars(self.title, 10)
+
+    @property
+    def short_content(self):
+        return truncatechars(self.content, 10)
+
+    @property
+    def short_slug(self):
+        return truncatechars(self.slug, 10)

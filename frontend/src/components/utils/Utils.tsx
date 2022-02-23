@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
-import axiosAccess from "./auth/Access";
+import Resizer from "react-image-file-resizer";
 
-// export const baseURL = "https://packetsss-django-backend.herokuapp.com";
-export const baseURL = "http://127.0.0.1:8000";
+import axiosAccess from "../../auth/Access";
+
+export const baseURL = "https://packetsss-django-backend.herokuapp.com";
+// export const baseURL = "http://127.0.0.1:8000";
+
+export const defaultAvatar =
+    "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg";
 
 export const getAuth = (body: any, grantType: string = "password") => {
     return {
@@ -27,8 +32,13 @@ export function disableRefresh(event: any) {
     event.preventDefault();
 }
 
+export function autoResizeTextarea(e: any) {
+    e.target.style.height = "auto";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+}
+
 // delay for notifications
-export const timeDelay: number = 2000;
+export const timeDelay: number = 1500;
 
 export function getDate(now: string) {
     let options: any = { year: "numeric", month: "long", day: "numeric" };
@@ -47,6 +57,27 @@ export function ScrollToTop() {
     }, [pathname]);
 
     return null;
+}
+
+// image resizing
+export function resizeImage(file: any) {
+    return new Promise((resolve) => {
+        Resizer.imageFileResizer(
+            file,
+            300, // maxWidth
+            300, // maxHeight
+            "JPEG", // compressFormat
+            100, // quality
+            0, // rotation
+            // responseUriFunc
+            (uri) => {
+                resolve(uri);
+            },
+            "blob", // outputType
+            200, // minWidth
+            200 // minHeight
+        );
+    });
 }
 
 export function Particle() {
@@ -109,5 +140,3 @@ export function Particle() {
         />
     );
 }
-
-

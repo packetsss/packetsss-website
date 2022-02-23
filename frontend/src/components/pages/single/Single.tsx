@@ -5,10 +5,17 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { store } from "react-notifications-component";
 
 import "./single.css";
-import { Particle, getDate, timeDelay, disableRefresh } from "../../../Utils";
+import {
+    getDate,
+    Particle,
+    timeDelay,
+    disableRefresh,
+    autoResizeTextarea,
+} from "../../utils/Utils";
 import axiosAccess from "../../../auth/Access";
 
 async function updatePost(postID: number, body: any) {
+    console.log(body);
     axiosAccess.put(`/api/posts/${postID}/`, body).then((resp: any) => {
         store.addNotification({
             title: "Edit Success!",
@@ -38,13 +45,16 @@ function onEditing(
             <textarea
                 required
                 id={`${maxLen}`}
-                className="form-control z-depth-1"
-                style={{ whiteSpace: "pre-wrap" }}
-                onChange={func}
+                className="singleEdit form-control z-depth-1"
+                onChange={(e) => {
+                    func(e);
+                    autoResizeTextarea(e);
+                }}
                 defaultValue={value}
                 rows={value.length / rowConst}
                 maxLength={maxLen}
                 placeholder="Please enter something at least..."
+                // onKeyDown={handleKeyDown}
             />
         );
     } else {
@@ -100,23 +110,17 @@ function confirmDelete(props: any) {
 }
 
 export default function Single(props: any) {
+    // order of useEffect is important
     useEffect(() => {
         if (!localStorage.getItem("refresh_token")) {
             window.location.replace("#/login");
         }
-    }, []);
-
-    // order of useEffect is important
-    useEffect(() => {
         axiosAccess
             .get(`/user/`)
             .then((resp: any) => {
                 setUser(resp.data[0]);
             })
             .catch((error) => console.log(error));
-    }, []);
-
-    useEffect(() => {
         axiosAccess
             .get(`/api/posts/${props.match.params.id}`)
             .then((resp: any) => {
@@ -170,7 +174,6 @@ export default function Single(props: any) {
                                 100, // max length
                                 30 //row length
                             )}
-
                         </Col>
                         {/* check ownership */}
                         {user.id === contents.author ? (

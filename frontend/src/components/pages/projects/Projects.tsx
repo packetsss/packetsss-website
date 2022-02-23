@@ -1,6 +1,6 @@
 import "./projects.css";
 import { ProjectCard } from "./Utils";
-import { Particle } from "../../../Utils";
+import { Particle } from "../../utils/Utils";
 import { Container, Row, Col } from "react-bootstrap";
 
 import poolKick from "../../../Assets/pool_kick.gif";

@@ -1,19 +1,31 @@
 .settings-icon {
-    text-decoration: none !important;
+    display: flex;
+    float: left;
+    text-decoration: none;
     font-size: 22px;
     color: black;
+    transition: all 0.3s ease-out 0s;
 }
+
 .settings-icon:hover {
     color: black;
-    transform: scale(1.2) !important;
+    transform: scale(1.03) !important;
+}
+
+.settings-icon-avatar {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: -15px;
 }
 
 .loginDetectDiv {
-    padding-top: 7px;
+    padding-top: 0px;
     padding-left: 7vw;
 }
 
-@media screen and (max-width: 1002px){
+@media screen and (max-width: 1002px) {
     .loginDetectDiv {
         padding-top: 7px;
         padding-left: 0;
@@ -34,11 +46,68 @@
     font-family: "Josefin Sans", sans-serif;
 }
 
-.topIcon {
+.topClickable {
     font-size: 20px;
-    margin-right: 10px;
+    margin-right: 1.5%;
     color: #444;
     cursor: pointer;
+    transition: all 0.15s ease-out 0s;
+}
+
+.topClickable:hover {
+    color: black;
+    transform: scale(1.2);
+}
+
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+        box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+    }
+}
+
+.profileDropdownMenu {
+    left: auto;
+    right: 0;
+    text-align: center;
+    margin-top: 59.8px;
+    width: 18vw;
+    animation: anvil 0.3s linear;
+    -webkit-animation: anvil 0.3s linear;
+}
+
+.profileDropdownMenuLogout {
+    cursor: pointer;
+}
+
+.dropdownIcon {
+    text-align: center;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.dropdownUser {
+    font-size: 30px;
+    font-family: Impact;
+}
+
+.dropdownIconAvatar {
+    border-radius: 12px;
+    width: 90px;
+}
+.dropdown-item {
+    font-weight: 600;
 }
 
 .sticky {
@@ -130,7 +199,6 @@
     .nav-link {
         padding: 0.7rem 1rem !important;
     }
-
 }
 
 .navbar-nav .nav-item {

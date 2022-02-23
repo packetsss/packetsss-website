@@ -1,0 +1,3 @@
+Create dropdown for profile picture - complete
+add friendship - complete
+add friend chats - complete

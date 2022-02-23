@@ -1,5 +1,5 @@
 import "./posts.css";
-import { Particle, removeTokens, getDate, randomRange } from "../../../Utils";
+import { Particle, removeTokens, getDate, randomRange } from "../../utils/Utils";
 
 import { useState, useEffect } from "react";
 import { Col, Container } from "react-bootstrap";
@@ -55,7 +55,6 @@ function getPosts(posts: any) {
 
 export default function Posts() {
     const [posts, setPosts] = useState<any>([]);
-    const cookies = `Token ${document.cookie.split("=")[1]}`;
 
     useEffect(() => {
         if (!localStorage.getItem("refresh_token")) {
@@ -68,7 +67,7 @@ export default function Posts() {
                 setPosts(resp.data);
             })
             .catch((error: any) => console.log(error));
-    }, [cookies]);
+    }, []);
 
     return posts ? (
         <Container className="posts">

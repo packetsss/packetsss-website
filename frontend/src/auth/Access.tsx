@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL, getAuth } from "../Utils";
+import { baseURL, getAuth } from "../components/utils/Utils";
 
 const axiosAccess = axios.create({
     baseURL: baseURL,

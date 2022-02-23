@@ -1,6 +1,7 @@
 .single {
     flex: 9;
     display: flex;
+    overflow-x: hidden;
 }
 
 .singlePostWrapper {
@@ -81,4 +82,16 @@
     margin-left: 20px;
     font-size: 30px;
     font-weight: 600;
+}
+
+.singleEdit {
+    white-space: pre-wrap;
+    border: none;
+    border-bottom: 2px solid rgb(161, 161, 161);
+    border-radius: 0px;
+    resize: none;
+    overflow: hidden;
+}
+.singleEdit:focus {
+    box-shadow: none;
 }

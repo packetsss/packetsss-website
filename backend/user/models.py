@@ -7,7 +7,6 @@ from django.contrib.auth.models import (
     BaseUserManager,
 )
 
-
 class Role(models.Model):
     """
     The Role entries are managed by the system,
@@ -46,7 +45,7 @@ class CustomUserManager(BaseUserManager):
 
     def create_user(self, email, username, password, **other_fields):
         email = self.normalize_email(email)
-        
+
         user = self.model(email=email, username=username, **other_fields)
         user.set_password(password)
         user.save()
@@ -55,6 +54,11 @@ class CustomUserManager(BaseUserManager):
 
 # create normal user
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    avatar = models.ImageField(
+        upload_to="user/avatar",
+        null=True,
+        blank=True,
+    )
     email = models.EmailField(gettext_lazy("email address"), unique=True)
     # max 150 for username
     username = models.CharField(max_length=50, unique=True)

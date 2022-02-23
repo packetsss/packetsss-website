@@ -4,7 +4,7 @@
 
 .settingsWrapper {
     flex: 9;
-    padding: 20px;
+    padding: 0px 20px;
 }
 
 .settingsTitle {
@@ -15,7 +15,7 @@
 
 .settingsTitleUpdate {
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-top: 40px;
     color: lightcoral;
 }
 
@@ -34,15 +34,53 @@
 .settingsPP {
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 15px 0px;
 }
 
 .settingsPP > img {
-    height: 70px;
-    width: 70px;
+    height: 200px;
+    width: 200px;
     border-radius: 20px;
     object-fit: cover;
+}
+
+.passwordWrapper {
+    position: relative;
+    display: inline;
+    margin-bottom: 14px;
+}
+
+.passwordWrapper > input {
+    z-index: 0;
+    color: rgb(88, 88, 88);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 45%;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    font-size: 19px;
+}
+
+.passwordWrapper > input:focus {
+    outline: none;
+}
+
+.passwordWrapper > i {
+    transform: scale(1.1);
+    position: absolute;
+    left: 42%;
+    top: 30%;
+    transition: all 0.2s ease 0s;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.passwordWrapper > i:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .settingsPPIcon {
@@ -58,6 +96,7 @@
     color: white;
     background-color: lightcoral;
     cursor: pointer;
+    zoom: 1.8;
 }
 
 .settingsPPButton:focus {
@@ -83,25 +122,32 @@
     border-bottom: 1px solid lightgray;
 }
 
+.btn {
+    transition: all 0.4s ease 0s;
+}
+.btn:hover {
+    transform: scale(1.02);
+}
+
 .settingsSubmitButton {
     z-index: 0;
     align-self: center;
     width: 150px;
     border: none;
     border-radius: 12px;
-    color: white;
+    color: rgb(232, 255, 255);
     font-weight: 600;
-    background-color: teal;
+    background-color: rgb(2, 161, 161) !important;
     padding: 10px;
     margin-top: 20px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .settingsSubmitButton:hover {
-    background-color: rgb(1, 114, 114);
+    color: rgb(255, 255, 255);
+    background-color: rgb(1, 114, 114) !important;
 }
 
 .settingsLogoutButton {
@@ -110,17 +156,58 @@
     width: 150px;
     border: none;
     border-radius: 12px;
-    color: white;
+    color: rgb(255, 233, 233);
     font-weight: 600;
     background-color: rgb(241, 79, 39);
     padding: 10px;
     margin-top: 20px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .settingsLogoutButton:hover {
+    color: rgb(255, 255, 255);
     background-color: rgb(209, 59, 13);
+}
+
+.settingsDeleteAccountButton {
+    z-index: 0;
+    align-self: center;
+    width: 150px;
+    border: none;
+    border-radius: 12px;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    background-color: rgb(77, 77, 77);
+    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settingsDeleteAccountButton:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(27, 27, 27);
+}
+
+.settingsFixedField {
+    margin: 20px 0px;
+    font-size: 22px !important;
+    color: rgb(63, 63, 63);
+    text-shadow: 5px 5px 8px #a8a8a8;
+}
+.settingsDescribeField {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.settingsPasswordStrengthBar {
+    padding: 5px 0px;
+    width: 35%;
+}
+
+#tsparticles {
+    z-index: -999;
 }

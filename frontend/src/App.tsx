@@ -14,7 +14,7 @@ import About from "./components/pages/about/About";
 import Register from "./components/pages/register/Register";
 import Footer from "./components/footer/Footer";
 import { Chat } from "./components/pages/chat/Chat";
-import { ScrollToTop } from "./Utils";
+import { ScrollToTop } from "./components/utils/Utils";
 
 function App() {
     // modify animation time to 0.5s instead of 1s
@@ -23,7 +23,7 @@ function App() {
     return (
         // github page only supports hashRouter not browserRouter
         <HashRouter basename={"/"}>
-            <div className="mainDiv">
+            <div className="mainDiv" id="mainDiv">
                 <ReactNotification />
                 <ScrollToTop />
                 <TopBar />

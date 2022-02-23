@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { store } from "react-notifications-component";
 import axiosAccess from "../../../auth/Access";
-import { Particle, disableRefresh, timeDelay } from "../../../Utils";
+import { Particle, disableRefresh, timeDelay } from "../../utils/Utils";
 import "./write.css";
 
 export default function Write() {
@@ -100,6 +100,7 @@ export default function Write() {
                         type="text"
                         autoFocus={true}
                         onChange={setTitleChange}
+                        maxLength={100}
                     />
                 </div>
                 <div className="writeFormGroup">
@@ -109,6 +110,7 @@ export default function Write() {
                         placeholder="Tell your story..."
                         autoFocus={true}
                         onChange={setContentChange}
+                        maxLength={777}
                     />
                 </div>
                 <button

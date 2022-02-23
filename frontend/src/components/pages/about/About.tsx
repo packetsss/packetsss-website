@@ -2,7 +2,7 @@ import "./about.css";
 import { Github, Toolstack, AboutCard, Techstack } from "./AboutTools";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../../Assets/my_pic_2.gif";
-import { Particle } from "../../../Utils";
+import { Particle } from "../../utils/Utils";
 
 function About() {
     return (

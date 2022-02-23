@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 
-ALLOWED_HOSTS = ["packetsss-django-backend.herokuapp.com"]
+ALLOWED_HOSTS = ["packetsss-django-backend.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "rest_framework.authtoken",
     # installed
     "storages",
     "channels",
@@ -38,6 +37,10 @@ INSTALLED_APPS = [
     "oauth2_provider",
     "social_django",
     "drf_social_oauth2",
+    # friendship
+    "friendship",
+    "rest_friendship",
+    "rest_framework.authtoken",
     # own apps
     "api",
     "user",
@@ -56,16 +59,21 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = (
-    False  # If this is True then `CORS_ALLOWED_ORIGINS` will not have any effect
+    True  # If this is True then `CORS_ALLOWED_ORIGINS` will not have any effect
 )
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://google.com",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
     "https://packetsss.live",
-    "https://code.iconify.design",
 ]
-CORS_ORIGIN_WHITELIST = "http://localhost:3000"
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "http://localhost:8000",
+#     "https://packetsss.live",
+# ]
 
 CORS_ALLOW_HEADERS = (
     "content-disposition",
@@ -119,18 +127,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    # },
 ]
 
 
@@ -151,25 +159,29 @@ USE_TZ = True
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_S3_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-AWS_HOST_REGION = os.environ.get("AWS_HOST_REGION")
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_DEFAULT_ACL = "public-read"
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = os.environ.get("AWS_HOST_REGION")
+AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
 
-# Static
+# S3 Static settings
 STATIC_LOCATION = "static"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "backend/static"),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "backend/static")]
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_STORAGE = "backend.storage_backends.StaticStorage"
 
-# Media
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'backend.storage_backends.PublicMediaStorage'
+# S3 Media settings
+PUBLIC_MEDIA_LOCATION = "media"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+DEFAULT_FILE_STORAGE = "backend.storage_backends.MediaStorage"
+
+# S3 private media settings
+PRIVATE_MEDIA_LOCATION = "private"
+PRIVATE_FILE_STORAGE = "backend.storage_backends.PrivateStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -205,7 +217,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 OAUTH2_PROVIDER = {
-    "ACCESS_TOKEN_EXPIRE_SECONDS": 120,  # 2 mins
+    "ACCESS_TOKEN_EXPIRE_SECONDS": 1200,  # 20 mins
     "REFRESH_TOKEN_EXPIRE_SECONDS": 1.3e6,  # 15 days
 }
 
@@ -221,7 +233,31 @@ SOCIAL_AUTH_USER_FIELDS = ["email", "username", "first_name", "password"]
 
 AUTH_USER_MODEL = "user.CustomUser"
 
-# django_heroku.settings(locals())
-
 # chat/channels
-ASGI_APPLICATION = "core.routing.application"
+ASGI_APPLICATION = "backend.routing.application"
+CHANNEL_LAYERS = {
+    "default": {
+        # "BACKEND": "channels.layers.InMemoryChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ["REDIS_URL"].strip(), ("127.0.0.1", 6379)],
+            
+        },
+    },
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ["REDIS_URL"],
+        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
+    }
+}
+
+# friendship
+REST_FRIENDSHIP = {
+    "PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "USER_SERIALIZER": "rest_friendship.serializers.FriendSerializer",
+}

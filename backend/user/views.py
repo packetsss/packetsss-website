@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework import status, viewsets
-
 from rest_framework.permissions import BasePermission
+from django.db.models import Q, Count, Subquery, OuterRef
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from .models import CustomUser
 from .serializers import CustomUserSerializer
@@ -26,4 +27,14 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 
     # over write get queryset to only return requested user
     def get_queryset(self):
+        if self.request is None:
+            return CustomUser.objects.none()
+
+        # list all in get request
+        if self.request.GET.get("listAll") == "true":
+            return CustomUser.objects.all()
+
+        if self.request.GET.get("getUserById"):
+            return CustomUser.objects.filter(id=self.request.GET.get("getUserById"))
+
         return CustomUser.objects.filter(username=self.request.user)

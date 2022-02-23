@@ -1,7 +1,7 @@
 import "./home.css";
 import Typewriter from "typewriter-effect";
 import { Container } from "react-bootstrap";
-import { Particle } from "../../../Utils";
+import { Particle } from "../../utils/Utils";
 
 function Type() {
     return (

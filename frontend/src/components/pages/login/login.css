@@ -45,3 +45,20 @@
     border-radius: 10px;
     text-align: center;
 }
+
+.eye {
+    position: absolute;
+    margin-left: -28px;
+    margin-top: 10.5px;
+    transform: scale(1.1);
+    transition: all 0.2s ease 0s;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.eye:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}

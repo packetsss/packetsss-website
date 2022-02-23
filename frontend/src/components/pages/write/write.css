@@ -38,6 +38,7 @@
     border: none;
     padding: 20px;
     width: 70vw;
+    resize: none;
 }
 
 .writeInput::placeholder {
@@ -54,6 +55,7 @@
     height: 35vh;
     font-family: inherit;
     font-size: 20px;
+    border-top: 2px solid rgb(173, 173, 173);
 }
 
 .writeSubmit {

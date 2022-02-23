@@ -14,10 +14,6 @@ class UserAdminConfig(UserAdmin):
         "lastname",
     )
     list_filter = (
-        "username",
-        "email",
-        "firstname",
-        "lastname",
         "is_active",
         "is_staff",
     )
@@ -25,9 +21,6 @@ class UserAdminConfig(UserAdmin):
     list_display = (
         "username",
         "email",
-        "firstname",
-        "lastname",
-        "is_active",
         "is_staff",
     )
     fieldsets = (
@@ -39,6 +32,7 @@ class UserAdminConfig(UserAdmin):
                     "username",
                     "firstname",
                     "lastname",
+                    "password"
                 )
             },
         ),

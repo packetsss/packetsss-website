@@ -12,3 +12,7 @@ python manage.py migrate
 
 # open python shell
 python manage.py shell
+
+# recreate database
+python manage.py migrate --fake [app-name] zero
+python manage.py migrate [app-name]

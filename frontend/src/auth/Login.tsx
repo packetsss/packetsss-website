@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL } from "../Utils";
+import { baseURL } from "../components/utils/Utils";
 
 const axiosLogin = axios.create({
     baseURL: baseURL,

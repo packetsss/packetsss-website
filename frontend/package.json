@@ -4,6 +4,11 @@
   "private": true,
   "homepage": "https://packetsss.live",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.17",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -16,6 +21,8 @@
     "bootstrap": "^5.1.1",
     "dateformat": "^5.0.1",
     "jwt-decode": "^3.1.2",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-confirm-alert": "^2.7.0",
@@ -23,17 +30,20 @@
     "react-dom": "^17.0.2",
     "react-github-calendar": "^3.1.2",
     "react-icons": "^4.2.0",
+    "react-image-file-resizer": "^0.4.7",
     "react-notifications": "^1.7.2",
     "react-notifications-component": "^3.1.0",
     "react-particles-js": "^3.5.3",
     "react-password-strength-bar": "^0.3.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "reactjs-popup": "^2.0.5",
     "socket.io-client": "^4.4.1",
     "textarea-autosize": "^0.4.2",
     "tsparticles": "^1.35.1",
     "typescript": "^4.4.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "websocket": "^1.0.34"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -63,8 +73,10 @@
   },
   "devDependencies": {
     "@types/dateformat": "^3.0.1",
+    "@types/jquery": "^3.5.13",
     "@types/react-notifications-component": "^3.1.1",
     "@types/react-router-dom": "^5.1.9",
+    "@types/websocket": "^1.0.5",
     "gh-pages": "^3.2.3",
     "typewriter-effect": "^2.18.2",
     "wowjs": "^1.1.3"

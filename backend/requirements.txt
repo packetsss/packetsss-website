@@ -3,9 +3,11 @@ djangorestframework
 drf_social_oauth2
 dj-database-url
 django-heroku
+django-friendship
 django-filter
 django-storages
 django-autoslug
+django-redis
 django-cors-headers
 whitenoise
 gunicorn
@@ -14,9 +16,12 @@ pyyaml
 requests
 python-dotenv
 
+daphne
 channels
+channels-redis
 
 boto
 boto3
 Pillow
 s3transfer
+
