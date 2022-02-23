@@ -2,29 +2,10 @@ import React from "react";
 import { w3cwebsocket as WS } from "websocket";
 
 import "./chat.css";
-import { baseURL, isDeployed } from "../../utils/Utils";
+import { baseURL, isDeployed, encodeRoomName } from "../../utils/Utils";
 import { FriendsList } from "./FriendsList";
 import { MessagesPanel } from "./MessagesPanel";
 import axiosAccess from "../../../auth/Access";
-
-function encodeRoomName(string: string) {
-    var number = "0x";
-    var length = string.length;
-    for (var i = 0; i < length; i++)
-        number += string.charCodeAt(i).toString(16);
-    return number;
-}
-
-function decodeRoomName(number: string) {
-    var string = "";
-    number = number.slice(2);
-    var length = number.length;
-    for (var i = 0; i < length; ) {
-        var code = number.slice(i, (i += 2));
-        string += String.fromCharCode(parseInt(code, 16));
-    }
-    return string;
-}
 
 function waitForConnection(client: WS, callback: any) {
     setTimeout(() => {
@@ -160,7 +141,9 @@ export class Chat extends React.Component {
             // setup new websocket connection
             if (isDeployed) {
                 this.client = new WS(
-                    `wss://${baseURL.split("/")[2]}:443/ws/chat/${this.state.room}/`
+                    `wss://${baseURL.split("/")[2]}:443/ws/chat/${
+                        this.state.room
+                    }/`
                 );
             } else {
                 this.client = new WS(

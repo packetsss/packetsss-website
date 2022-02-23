@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Particles from "react-particles-js";
@@ -5,7 +6,7 @@ import Resizer from "react-image-file-resizer";
 
 import axiosAccess from "../../auth/Access";
 
-export const isDeployed = true;
+export const isDeployed = process.env["NODE_ENV"] !== "development";
 
 let basesURL = "";
 
@@ -66,6 +67,25 @@ export function ScrollToTop() {
     }, [pathname]);
 
     return null;
+}
+
+export function encodeRoomName(string: string) {
+    var number = "0x";
+    var length = string.length;
+    for (var i = 0; i < length; i++)
+        number += string.charCodeAt(i).toString(16);
+    return number;
+}
+
+export function decodeRoomName(number: string) {
+    var string = "";
+    number = number.slice(2);
+    var length = number.length;
+    for (var i = 0; i < length; ) {
+        var code = number.slice(i, (i += 2));
+        string += String.fromCharCode(parseInt(code, 16));
+    }
+    return string;
 }
 
 // image resizing

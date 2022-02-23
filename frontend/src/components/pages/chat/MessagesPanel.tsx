@@ -10,6 +10,7 @@ const resetTextarea = () => {
 
 export class MessagesPanel extends React.Component<any> {
     state = { input_value: "" };
+    
     send = (e: any) => {
         e.preventDefault();
         if (this.state.input_value && this.state.input_value !== "") {
@@ -24,16 +25,15 @@ export class MessagesPanel extends React.Component<any> {
 
     render() {
         let input = document.getElementById("message-input-box");
-        let button = document.getElementById("message-input-submit-button");
+        let form = document.getElementById("messages-input-form");
         let messagesScrolling = document.getElementById(
             "messages-list-scrolling"
         );
 
-        if (input && button) {
-            input.addEventListener("keyup", function (event) {
+        if (input && form) {
+            input.addEventListener("keypress",  (event: any) =>{
                 if (event.key === "Enter" && !event.shiftKey) {
-                    event.preventDefault();
-                    button!.click();
+                    this.send(event)
                     return false;
                 }
             });
@@ -67,7 +67,11 @@ export class MessagesPanel extends React.Component<any> {
                 )}
                 <div className="messages-input-wrapper">
                     {this.props.friend["id"] && (
-                        <form className="messages-input" onSubmit={this.send}>
+                        <form
+                            className="messages-input"
+                            id="messages-input-form"
+                            onSubmit={this.send}
+                        >
                             {/* <input
                             id="message-input-box"
                             type="text"
@@ -77,14 +81,9 @@ export class MessagesPanel extends React.Component<any> {
                             <textarea
                                 id="message-input-box"
                                 className="singleEdit form-control z-depth-1"
-                                onChange={(e) => {
+                                onInput={(e) => {
                                     this.handleInput(e);
                                     autoResizeTextarea(e);
-                                }}
-                                onKeyPress={(e) => {
-                                    if (e.key === "Enter" && !e.shiftKey) {
-                                        e.preventDefault();
-                                    }
                                 }}
                                 value={this.state.input_value}
                                 rows={this.state.input_value.length / 30}
