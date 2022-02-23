@@ -1,0 +1,26 @@
+# set secret
+heroku config:set [key name]="key"
+
+# disable collectstatic
+heroku config:set DISABLE_COLLECTSTATIC=1
+
+# login
+heroku login
+
+# push to heroku
+git push heroku master
+
+# check last logs
+heroku logs --tail
+
+# check details
+heroku pg
+
+# check addons
+heroku addons
+
+# directly run cmds using heroku run
+heroku run python manage.py migrate
+
+# ssh to heroku server
+heroku run bash
