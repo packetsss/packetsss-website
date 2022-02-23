@@ -28,3 +28,5 @@ __pycache__/
 migrations/
 
 AWS_accessKeys.csv
+
+.vscode
