@@ -51,7 +51,6 @@ export default class Messages extends Component<any> {
                 )
         );
         if (this.props.endOfChat) {
-            console.log(messageList);
             messageList.push(
                 <MessageEnd
                     key={messageList.length}

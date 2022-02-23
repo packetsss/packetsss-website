@@ -2,7 +2,7 @@ import React from "react";
 import { w3cwebsocket as WS } from "websocket";
 
 import "./chat.css";
-import { baseURL } from "../../utils/Utils";
+import { baseURL, isDeployed } from "../../utils/Utils";
 import { FriendsList } from "./FriendsList";
 import { MessagesPanel } from "./MessagesPanel";
 import axiosAccess from "../../../auth/Access";
@@ -158,9 +158,15 @@ export class Chat extends React.Component {
     componentDidUpdate(prevProps: any, prevState: any) {
         if (prevState.room !== this.state.room) {
             // setup new websocket connection
-            this.client = new WS(
-                `ws://${baseURL.split("/")[2]}/ws/chat/${this.state.room}/`
-            );
+            if (isDeployed) {
+                this.client = new WS(
+                    `wss://${baseURL.split("/")[2]}:443/ws/chat/${this.state.room}/`
+                );
+            } else {
+                this.client = new WS(
+                    `ws://${baseURL.split("/")[2]}/ws/chat/${this.state.room}/`
+                );
+            }
             this.client.onmessage = (message: any) => {
                 const dataFromServer = JSON.parse(message.data);
                 // console.log("got reply! ", dataFromServer);

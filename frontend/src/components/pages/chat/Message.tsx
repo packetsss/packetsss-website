@@ -24,7 +24,7 @@ export class Message extends React.Component<any> {
                                 alt="avatar"
                             />
                         </div>
-                        <h4>{this.props.message.sender}</h4>
+                        {/* <h4>{this.props.message.sender}</h4> */}
                     </div>
                     <div className="messageBodyReversed">
                         <p>{this.props.message.message}</p>
@@ -48,7 +48,7 @@ export class Message extends React.Component<any> {
                                 alt="avatar"
                             />
                         </div>
-                        <h4>{this.props.message.sender}</h4>
+                        {/* <h4>{this.props.message.sender}</h4> */}
                     </div>
                     <div className="messageBody">
                         <p>{this.props.message.message}</p>
@@ -76,23 +76,25 @@ export class MessageDate extends React.Component<any> {
 
 export class MessageEnd extends React.Component<any> {
     render() {
-        console.log(this.props.user);
         return (
             <div className="endChat">
                 <div className="endChatProfile">
-                        <div className="avatar-div endChatAvatar">
-                            <img
-                                src={
-                                    this.props.user.avatar
-                                        ? this.props.user.avatar
-                                        : defaultAvatar
-                                }
-                                alt="avatar"
-                            />
-                        </div>
-                        <h4>{this.props.user.username}</h4>
+                    <div className="avatar-div endChatAvatar">
+                        <img
+                            src={
+                                this.props.user.avatar
+                                    ? this.props.user.avatar
+                                    : defaultAvatar
+                            }
+                            alt="avatar"
+                        />
                     </div>
-                <div className="endChatChild">Friend since {moment(this.props.user.created).format("YYYY-MM-DD")}</div>
+                    <h4>{this.props.user.username}</h4>
+                </div>
+                <div className="endChatChild">
+                    Friend since{" "}
+                    {moment(this.props.user.created).format("YYYY-MM-DD")}
+                </div>
             </div>
         );
     }

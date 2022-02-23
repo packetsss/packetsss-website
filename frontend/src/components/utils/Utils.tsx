@@ -5,8 +5,17 @@ import Resizer from "react-image-file-resizer";
 
 import axiosAccess from "../../auth/Access";
 
-// export const baseURL = "https://packetsss-django-backend.herokuapp.com";
-export const baseURL = "http://127.0.0.1:8000";
+export const isDeployed = true;
+
+let basesURL = "";
+
+if (isDeployed) {
+    basesURL = "https://packetsss-django-backend.herokuapp.com";
+} else {
+    basesURL = "http://127.0.0.1:8000";
+}
+
+export const baseURL = basesURL;
 
 export const defaultAvatar =
     "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg";
