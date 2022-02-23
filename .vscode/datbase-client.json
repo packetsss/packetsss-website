@@ -1,0 +1,45 @@
+{
+    "database.connections": {
+        "1645597819772": {
+            "key": "1645597819772",
+            "host": "ec2-3-220-214-162.compute-1.amazonaws.com",
+            "port": 5432,
+            "user": "vyjvzvgstcffbq",
+            "password": "cc0dfe1025d5a04458c399785d8f44afaaab0a5161eff9ac48b99572ba895f90",
+            "timezone": "+00:00",
+            "useSSL": true,
+            "isCluster": false,
+            "clientCertPath": null,
+            "clientKeyPath": null,
+            "ssh": {
+                "host": "",
+                "privateKeyPath": "C:\\Users\\pyjpa\\.ssh\\id_rsa",
+                "port": 22,
+                "username": "root",
+                "type": "password",
+                "connectTimeout": 10000,
+                "algorithms": {
+                    "cipher": []
+                },
+                "tunnelPort": null
+            },
+            "usingSSH": false,
+            "esAuth": "none",
+            "encoding": "utf8",
+            "showHidden": false,
+            "connectionKey": "database.connections",
+            "hideSystemSchema": false,
+            "global": false,
+            "dbType": "PostgreSQL",
+            "connectionUrl": "",
+            "useConnectionString": false,
+            "encrypt": false,
+            "dbPath": "",
+            "authType": "default",
+            "includeDatabases": "da0gnjtitp9428",
+            "database": "da0gnjtitp9428",
+            "name": "heroku db",
+            "tooltip": "Host: ec2-3-220-214-162.compute-1.amazonaws.com, Port: 5432"
+        }
+    }
+}

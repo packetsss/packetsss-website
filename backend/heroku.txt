@@ -1,6 +1,12 @@
 # set secret
 heroku config:set [key name]="key"
 
+# disable collectstatic
+heroku config:set DISABLE_COLLECTSTATIC=1
+
+# login
+heroku login
+
 # push to heroku
 git push heroku master
 

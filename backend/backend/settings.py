@@ -169,7 +169,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 # S3 Static settings
 STATIC_LOCATION = "static"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "backend/static")]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "backend/static")]
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
 # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 STATICFILES_STORAGE = "backend.storage_backends.StaticStorage"
@@ -240,7 +240,7 @@ CHANNEL_LAYERS = {
         # "BACKEND": "channels.layers.InMemoryChannelLayer",
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ["REDIS_URL"].strip(), ("127.0.0.1", 6379)],
+            "hosts": [os.environ["REDIS_URL"], ("127.0.0.1", 6379)],
             
         },
     },
@@ -261,3 +261,6 @@ REST_FRIENDSHIP = {
     ],
     "USER_SERIALIZER": "rest_friendship.serializers.FriendSerializer",
 }
+
+if os.environ.get("DEBUG_VALUE") != "True":
+    django_heroku.settings(locals())
