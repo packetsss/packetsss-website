@@ -68,19 +68,13 @@ function loginDetect(user: any) {
         ({ onClick, value }, ref) =>
             user ? (
                 <Container className="dropdownIcon">
-     
-                        <img
-                            className="dropdownIconAvatar"
-                            src={
-                                user.avatar
-                                    ? user.avatar
-                                    : defaultAvatar
-                            }
-                            alt="avatar"
-                        ></img>
-                        <br />
-                        <label className="dropdownUser">{user.username}</label>
-                  
+                    <img
+                        className="dropdownIconAvatar"
+                        src={user.avatar ? user.avatar : defaultAvatar}
+                        alt="avatar"
+                    ></img>
+                    <br />
+                    <label className="dropdownUser">{user.username}</label>
                 </Container>
             ) : (
                 <div></div>
@@ -154,54 +148,50 @@ export default function TopBar() {
                             updateExpanded(expand ? false : true);
                         }}
                     ></Navbar.Toggle>
-                    <a
-                        aria-label="link"
-                        className="topClickable"
-                        href="https://github.com/packetsss"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <i className="topIcon fab fa-github-square"></i>
-                    </a>
-                    <a
-                        aria-label="link"
-                        className="topClickable"
-                        href="https://www.linkedin.com/in/paul-pan001/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <i className="topIcon fab fa-linkedin"></i>
-                    </a>
-                    <a
-                        aria-label="link"
-                        className="topClickable"
-                        href="https://www.facebook.com/paul.pan.94849/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <i className="topIcon fab fa-facebook-square"></i>
-                    </a>
-                    <a
-                        aria-label="link"
-                        className="topClickable"
-                        href="https://twitter.com/pyj2001"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <i className="topIcon fab fa-twitter-square"></i>
-                    </a>
-                    <a
-                        aria-label="link"
-                        className="topClickable"
-                        href="https://www.instagram.com/_popaz/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <i className="topIcon fab fa-instagram-square"></i>
-                    </a>
-
+                    <div className="top-clickable">
+                        <a
+                            aria-label="link"
+                            href="https://github.com/packetsss"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i className="topIcon fab fa-github-square"></i>
+                        </a>
+                        <a
+                            aria-label="link"
+                            href="https://www.linkedin.com/in/paul-pan001/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i className="topIcon fab fa-linkedin"></i>
+                        </a>
+                        <a
+                            aria-label="link"
+                            href="https://www.facebook.com/paul.pan.94849/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i className="topIcon fab fa-facebook-square"></i>
+                        </a>
+                        <a
+                            aria-label="link"
+                            href="https://twitter.com/pyj2001"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i className="topIcon fab fa-twitter-square"></i>
+                        </a>
+                        <a
+                            aria-label="link"
+                            href="https://www.instagram.com/_popaz/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i className="topIcon fab fa-instagram-square"></i>
+                        </a>
+                    </div>
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav defaultActiveKey="#home">
+                        <Nav defaultActiveKey="#home" className="navbar-items">
                             <Nav.Item>
                                 <Nav.Link
                                     as={Link}
@@ -265,8 +255,8 @@ export default function TopBar() {
                             </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
-                    <Nav.Item>
-                        <div className="fork-btn">{loginDetect(user)}</div>
+                    <Nav.Item className="fork-btn">
+                        <div>{loginDetect(user)}</div>
                     </Nav.Item>
                 </Container>
             </Navbar>
