@@ -189,9 +189,18 @@
 }
 
 .navbar-collapse {
+    display: flex;
+    justify-content: space-evenly;
     flex-grow: 0;
+    width: 100%;
     padding-bottom: 0px;
-    padding-right: 80px;
+    margin: auto;
+    align-items: center
+}
+
+.navbar-items {
+    width: 85%;
+    justify-content: space-between;
 }
 
 .navbar-nav .nav-item a {
@@ -219,9 +228,6 @@
     width: 100%;
 }
 
-.fork-btn {
-    /* padding-top: 0.6em; */
-}
 
 .fork-btn-inner {
     line-height: 1.4em;
