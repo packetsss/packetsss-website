@@ -10,6 +10,7 @@ const messageTime = (_time: string) => {
 
 export class Message extends React.Component<any> {
     render() {
+        
         return this.props.ownMessage ? (
             <li key={this.props.index}>
                 <div className="messagesBlockReversed">

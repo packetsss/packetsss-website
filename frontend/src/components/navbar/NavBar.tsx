@@ -51,7 +51,7 @@ function loginDetect(user: any) {
                             src={
                                 user.avatar
                                     ? user.avatar
-                                    : "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg"
+                                    : defaultAvatar
                             }
                             alt="avatar"
                         ></img>

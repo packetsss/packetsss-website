@@ -3,7 +3,7 @@ import { baseURL, getAuth } from "../components/utils/Utils";
 
 const axiosAccess = axios.create({
     baseURL: baseURL,
-    timeout: 5000,
+    timeout: 8000,
     headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         "Content-Type": "application/json",
@@ -48,7 +48,17 @@ axiosAccess.interceptors.response.use(
         const originalRequest = error.config;
 
         if (typeof error.response === "undefined") {
-            alert("Backend server probably unavailable right now.\n" + error);
+            let alerted = localStorage.getItem("alerted");
+            if (alerted !== "true") {
+                alert(
+                    error +
+                        "\nBackend server is probably unavailable right now.\n\nPlease contact Packetsss for further assistance:\nhttps://github.com/packetsss"
+                );
+                localStorage.setItem("alerted", "true");
+                setTimeout(() => {
+                    localStorage.removeItem("alerted");
+                }, 20000);
+            }
             return Promise.reject(error);
         }
 

@@ -5,6 +5,7 @@ import Particles from "react-particles-js";
 import Resizer from "react-image-file-resizer";
 
 import axiosAccess from "../../auth/Access";
+import da from "../../Assets/defaultAvatar.jpg";
 
 export const isDeployed = process.env["NODE_ENV"] !== "development";
 
@@ -18,8 +19,7 @@ if (isDeployed) {
 
 export const baseURL = basesURL;
 
-export const defaultAvatar =
-    "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg";
+export const defaultAvatar = da;
 
 export function delay(time: number) {
     return new Promise((resolve) => setTimeout(resolve, time));

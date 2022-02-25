@@ -10,6 +10,7 @@ import imgEditor from "../../../Assets/image_editor.gif";
 import sudoku from "../../../Assets/sudoku.gif";
 
 export default function Projects() {
+    console.log(poolKick) 
     return (
         <Container fluid className="project-section">
             <Particle />
