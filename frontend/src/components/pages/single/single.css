@@ -37,7 +37,7 @@
     /* left: 5%; */
     font-size: 28px;
     z-index: 0;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .singlePostIcon {
@@ -109,7 +109,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 770px) {
     .singlePostTitle {
         display: grid;
         grid-template-columns: 1fr;

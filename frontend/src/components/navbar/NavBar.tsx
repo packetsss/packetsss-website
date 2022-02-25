@@ -21,7 +21,7 @@ import "./navbar.css";
 
 import axiosAccess from "../../auth/Access";
 import { logout } from "../pages/setting/Setting";
-import { defaultAvatar } from "../utils/Utils";
+import { defaultAvatar, delay } from "../utils/Utils";
 
 function loginDetect(user: any) {
     if (!localStorage.getItem("refresh_token")) {
@@ -102,6 +102,14 @@ function loginDetect(user: any) {
     );
 }
 
+function renderProfileFunction(
+    expand: boolean,
+    updateExpanded: any,
+    setRenderProfile: any
+) {
+    updateExpanded(!expand);
+}
+
 export default function TopBar() {
     const cookies = `Token ${document.cookie.split("=")[1]}`;
 
@@ -123,6 +131,15 @@ export default function TopBar() {
     const [expand, updateExpanded] = useState(false);
     const [navColour, updateNavbar] = useState(false);
     const [user, setUser] = useState<any>();
+    const [renderProfile, setRenderProfile] = useState(true);
+
+    useEffect(() => {
+        if (!expand) {
+            delay(320).then(() => setRenderProfile(true));
+        } else {
+            setRenderProfile(false);
+        }
+    }, [expand]);
 
     function scrollHandler() {
         if (window.scrollY >= 20) {
@@ -131,7 +148,6 @@ export default function TopBar() {
             updateNavbar(false);
         }
     }
-
 
     window.addEventListener("scroll", scrollHandler);
     return (
@@ -146,7 +162,11 @@ export default function TopBar() {
                     <Navbar.Toggle
                         aria-controls="responsive-navbar-nav"
                         onClick={() => {
-                            updateExpanded(expand ? false : true);
+                            renderProfileFunction(
+                                expand,
+                                updateExpanded,
+                                setRenderProfile
+                            );
                         }}
                     ></Navbar.Toggle>
                     <div className="top-clickable">
@@ -191,7 +211,10 @@ export default function TopBar() {
                             <i className="topIcon fab fa-instagram-square"></i>
                         </a>
                     </div>
-                    <Navbar.Collapse id="responsive-navbar-nav" aria-expanded>
+                    <Navbar.Collapse
+                        id="responsive-navbar-nav"
+                        className={expand ? "navbar-collapse-show" : ""}
+                    >
                         <Nav defaultActiveKey="#home" className="navbar-items">
                             <Nav.Item>
                                 <Nav.Link
@@ -257,7 +280,7 @@ export default function TopBar() {
                         </Nav>
                     </Navbar.Collapse>
                     <Nav.Item className="fork-btn">
-                        <div>{!expand && loginDetect(user)}</div>
+                        <div>{renderProfile && loginDetect(user)}</div>
                     </Nav.Item>
                 </Container>
             </Navbar>

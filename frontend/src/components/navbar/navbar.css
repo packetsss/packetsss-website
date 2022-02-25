@@ -169,9 +169,12 @@
     width: 100%;
     padding-bottom: 0px;
     margin: auto;
-    align-items: center;
+    align-items: normal;
 }
 
+.navbar-collapse-show {
+    padding-top: 10px;
+}
 .navbar-items {
     width: 85%;
     justify-content: space-between;
@@ -260,9 +263,9 @@
     .navbar-toggler {
         padding: 0;
     }
-    .navbar-items {
+    /* .navbar-items {
         padding-top: 20px;
-    }
+    } */
 
     .top-clickable {
         width: 50%;

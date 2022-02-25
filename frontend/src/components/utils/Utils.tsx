@@ -21,6 +21,10 @@ export const baseURL = basesURL;
 export const defaultAvatar =
     "https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg";
 
+export function delay(time: number) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 export const getAuth = (body: any, grantType: string = "password") => {
     return {
         ...body,

@@ -50,7 +50,7 @@
     border: 1px solid #e0e0e0;
     margin: 10px 10px 0px 15px;
     padding: 0px;
-    height: 87.5vh;
+    height: 83vh;
     display: flex;
     flex-direction: column;
 }
@@ -390,6 +390,10 @@
     }
     .messages-input textarea {
         font-size: 10px !important;
+    }
+
+    .messages-panel {
+        height: 60vh !important;
     }
 }
 
