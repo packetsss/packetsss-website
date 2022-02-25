@@ -165,8 +165,8 @@ export default function Single(props: any) {
                     }}
                 >
                     <Row className="singlePostTitle">
-                        <Col></Col>
-                        <Col className="col-md-8">
+                        <Col className="singlePostSpacer"></Col>
+                        <Col className="col-md-8 singlePostTitleText">
                             {onEditing(
                                 isEditing,
                                 setTitleChange,
@@ -208,7 +208,7 @@ export default function Single(props: any) {
                                 )}
                             </Col>
                         ) : (
-                            <Col></Col>
+                            <Col className="singlePostSpacer"></Col>
                         )}
                     </Row>
                     <Col className="singlePostInfo">

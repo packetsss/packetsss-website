@@ -24,14 +24,6 @@
     float: right;
 }
 
-/* @media screen and (max-width: 1002px) {
-    .loginDetectDiv {
-        padding-top: 7px;
-        padding-left: 0;
-        margin-left: 0;
-    }
-} */
-
 .top {
     width: 100%;
     height: 50px;
@@ -71,24 +63,6 @@
 .top-clickable a:hover {
     color: black;
     transform: scale(1.2);
-}
-
-@keyframes anvil {
-    0% {
-        transform: scale(1) translateY(0px);
-        opacity: 0;
-        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    1% {
-        transform: scale(0.96) translateY(10px);
-        opacity: 0;
-        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    100% {
-        transform: scale(1) translateY(0px);
-        opacity: 1;
-        box-shadow: 0 0 500px rgba(241, 241, 241, 0);
-    }
 }
 
 .profileDropdownMenu {
@@ -153,16 +127,16 @@
 }
 
 .navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(2),
 .navbar-toggler span:nth-child(3) {
-    transition: transform 0.35s ease-in-out;
     transition: transform 0.35s ease-in-out;
 }
 
 .navbar-toggler:not(.collapsed) span:nth-child(1) {
     position: absolute;
-    left: 12px;
-    top: 10px;
-    transform: rotate(135deg);
+    /* left: 12px; */
+    /* top: 10px; */
+    transform: rotate(-45deg);
     opacity: 0.9;
 }
 
@@ -195,7 +169,7 @@
     width: 100%;
     padding-bottom: 0px;
     margin: auto;
-    align-items: center
+    align-items: center;
 }
 
 .navbar-items {
@@ -227,7 +201,6 @@
 .navbar-nav .nav-item a:hover::after {
     width: 100%;
 }
-
 
 .fork-btn-inner {
     line-height: 1.4em;
@@ -284,8 +257,70 @@
     .nav-link {
         padding: 0.7rem 1rem;
     }
+    .navbar-toggler {
+        padding: 0;
+    }
+    .navbar-items {
+        padding-top: 20px;
+    }
 
+    .top-clickable {
+        width: 50%;
+    }
     .top-clickable a {
-        padding: 0 3vw;
+        padding: 0 0;
+    }
+    ::-webkit-scrollbar {
+        width: 8px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+        font-size: 14px;
+    }
+    .settings-icon-avatar {
+        height: 30px;
+        width: 30px;
+    }
+
+    .dropdownUser {
+        font-size: 20px;
+        font-family: Impact;
+    }
+
+    .dropdownIconAvatar {
+        border-radius: 12px;
+        width: 70px;
+    }
+    .dropdown-item {
+        font-size: 14px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px !important;
+    }
+}
+@media (max-width: 250px) {
+    .top-clickable {
+        display: none;
+    }
+}
+
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+        box-shadow: 0 0 500px rgba(241, 241, 241, 0);
     }
 }

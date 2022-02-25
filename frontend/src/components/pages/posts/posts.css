@@ -95,3 +95,16 @@
     word-break: break-all;
     white-space: normal;
 }
+
+@media (max-width: 550px) {
+    .postImg {
+        width: 60vw;
+        height: 60vw;
+    }
+}
+@media (max-width: 200px) {
+    .postImg {
+        width: 40vw;
+        height: 60vw;
+    }
+}

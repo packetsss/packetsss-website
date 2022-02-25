@@ -132,6 +132,7 @@ export default function TopBar() {
         }
     }
 
+
     window.addEventListener("scroll", scrollHandler);
     return (
         <div className="top">
@@ -190,7 +191,7 @@ export default function TopBar() {
                             <i className="topIcon fab fa-instagram-square"></i>
                         </a>
                     </div>
-                    <Navbar.Collapse id="responsive-navbar-nav">
+                    <Navbar.Collapse id="responsive-navbar-nav" aria-expanded>
                         <Nav defaultActiveKey="#home" className="navbar-items">
                             <Nav.Item>
                                 <Nav.Link
@@ -256,7 +257,7 @@ export default function TopBar() {
                         </Nav>
                     </Navbar.Collapse>
                     <Nav.Item className="fork-btn">
-                        <div>{loginDetect(user)}</div>
+                        <div>{!expand && loginDetect(user)}</div>
                     </Nav.Item>
                 </Container>
             </Navbar>
