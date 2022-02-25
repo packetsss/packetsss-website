@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.32a1b1b5.chunk.css",
-    "main.js": "/static/js/main.109638ef.chunk.js",
-    "main.js.map": "/static/js/main.109638ef.chunk.js.map",
+    "main.js": "/static/js/main.87d0a61a.chunk.js",
+    "main.js.map": "/static/js/main.87d0a61a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.5bb75078.js",
     "runtime-main.js.map": "/static/js/runtime-main.5bb75078.js.map",
     "static/css/2.7b727445.chunk.css": "/static/css/2.7b727445.chunk.css",
@@ -13,6 +13,7 @@
     "static/css/main.32a1b1b5.chunk.css.map": "/static/css/main.32a1b1b5.chunk.css.map",
     "static/js/2.dd1cde61.chunk.js.LICENSE.txt": "/static/js/2.dd1cde61.chunk.js.LICENSE.txt",
     "static/media/chatbot.8e9e433d.jpg": "/static/media/chatbot.8e9e433d.jpg",
+    "static/media/defaultAvatar.a5cedf25.jpg": "/static/media/defaultAvatar.a5cedf25.jpg",
     "static/media/image_editor.3eb63aae.gif": "/static/media/image_editor.3eb63aae.gif",
     "static/media/my_pic_2.22a009c7.gif": "/static/media/my_pic_2.22a009c7.gif",
     "static/media/pool_kick.1dda2452.gif": "/static/media/pool_kick.1dda2452.gif",
@@ -24,6 +25,6 @@
     "static/css/2.7b727445.chunk.css",
     "static/js/2.dd1cde61.chunk.js",
     "static/css/main.32a1b1b5.chunk.css",
-    "static/js/main.109638ef.chunk.js"
+    "static/js/main.87d0a61a.chunk.js"
   ]
 }
