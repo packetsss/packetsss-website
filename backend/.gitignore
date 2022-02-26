@@ -140,3 +140,10 @@ cython_debug/
 # Others
 staticfiles/
 static/
+
+__pycache__/
+migrations/
+
+AWS_accessKeys.csv
+
+.vscode
