@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "csp.middleware.CSPMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -59,17 +60,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_ALL_ORIGINS = (
-    True  # If this is True then `CORS_ALLOWED_ORIGINS` will not have any effect
-)
+CORS_ALLOW_ALL_ORIGINS = False
+# If this is True then `CORS_ALLOWED_ORIGINS` will not have any effect
+
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://google.com",
-    "http://127.0.0.1:8000",
-    "http://localhost:8000",
+    "http://localhost:3000",
     "https://packetsss.live",
 ]
 
@@ -268,3 +267,29 @@ if os.environ.get("DEBUG_VALUE") != "True":
             "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient"},
         }
     }
+
+
+### SECURITY ###
+
+# set CSP policy to load only from server
+CSP_DEFAULT_SRC = ("'self'", AWS_S3_CUSTOM_DOMAIN)
+CSP_SCRIPT_SRC_ELEM = (
+    "'sha256-K2w4m0VrJ+Njhv782hiCwTin5ttpnXcFkRWtCuqj5wQ='",
+    "'sha256-CctFeC4zU3ZdlruNMfaRsmhQV9n/V1LLezx4A6pAvRs='",
+    AWS_S3_CUSTOM_DOMAIN,
+)
+
+# HSTS
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_INCLUDE_PRELOAD = True
+
+# redirect HTTP to HTTPS
+if os.environ.get("DEBUG_VALUE") != "True":
+    SECURE_SSL_REDIRECT = True
+    # for heroku
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# cookies
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True

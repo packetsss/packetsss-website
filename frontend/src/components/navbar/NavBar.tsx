@@ -111,7 +111,8 @@ function renderProfileFunction(
 }
 
 export default function TopBar() {
-    const cookies = `Token ${document.cookie.split("=")[1]}`;
+
+    const cookies = localStorage.getItem("refresh_token");
 
     useEffect(() => {
         localStorage.getItem("refresh_token") ? (
@@ -122,6 +123,7 @@ export default function TopBar() {
                 })
                 .catch((err: any) => {
                     console.log(err.response);
+                    console.log(err);
                 })
         ) : (
             <div></div>

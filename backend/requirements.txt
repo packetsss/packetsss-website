@@ -9,6 +9,7 @@ django-storages
 django-autoslug
 django-redis
 django-cors-headers
+django-csp
 whitenoise
 gunicorn
 coreapi
